@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e3a5f">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="images/logo.jpg">
+  <title>LSI - Save 10+ Hours Every Week on Teaching</title>
+  <meta name="description" content="Grade papers in 3 minutes. Create lessons instantly. Save 10+ hours every week. Used by 50+ Hong Kong schools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { position: relative;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .nav-links a .icon { font-size: 1rem; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 8rem 1.5rem 6rem;
+      background: rgba(240, 249, 255, 0.3);
+    }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: #3b82f6; }
+    .hero p {
+      font-size: 1.25rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    .btn-secondary {
+      background: white;
+      color: #1e3a5f;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: #1e3a5f;
+    }
+    
+    /* Stats Bar */
+      font-size: 0.875rem;
+    }
+    
+    /* Tools Section */
+    .tools-section {
+      padding: 5rem 1.5rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .tool-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: block;
+    }
+    .tool-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    }
+    .tool-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .tool-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .tool-card:hover .tool-image img {
+      transform: scale(1.05);
+    }
+    .tool-card .tool-content {
+      padding: 1.5rem;
+    }
+    .tool-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .badge-lsi { background: #dbeafe; color: #1e40af; }
+    .badge-cypress { background: #d1fae5; color: #065f46; }
+    .badge-vispace { background: #ede9fe; color: #5b21b6; }
+    .badge-wiki { background: #fef3c7; color: #92400e; }
+    .tool-card h3 {
+      color: #1e3a5f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .tool-card p {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 5rem 1.5rem;
+      background: #f8fafc;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 1rem;
+    }
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-card h3 {
+      color: #1e3a5f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: #1e3a5f;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-buttons { justify-content: center; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .setup-fee-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  
+    /* School Logos Section */
+    .schools-section {
+      padding: 4rem 0;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .schools-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+    .logo-marquee-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .logo-marquee {
+      display: flex;
+      gap: 2rem;
+      animation: marquee 30s linear infinite;
+    }
+    .logo-marquee.reverse {
+      animation: marquee-reverse 30s linear infinite;
+    }
+    .logo-marquee:hover {
+      animation-play-state: paused;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes marquee-reverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .logo-item {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .logo-item:hover {
+      transform: scale(1.15);
+    }
+    .logo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .setup-fee-grid { grid-template-columns: 1fr; }
+      .logo-item {
+        width: 50px;
+        height: 50px;
+      }
+      .logo-marquee {
+        gap: 1rem;
+      }
+    }
+#chat-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(30,58,95,0.4);
+  z-index: 999999;
+  transition: transform 0.2s;
+}
+#chat-bubble:hover { transform: scale(1.1); }
+#chat-panel {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 360px;
+  max-width: calc(100vw - 48px);
+  height: 480px;
+  max-height: 70vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 999998;
+}
+#chat-head {
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  color: white;
+  padding: 14px 16px;
+  border-radius: 16px 16px 0 0;
+}
+#chat-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+#chat-body .msg {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 85%;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+#chat-body .msg.user {
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  color: white;
+  margin-left: auto;
+}
+#chat-body .msg.bot {
+  background: white;
+  border: 1px solid #e2e8f0;
+}
+#chat-foot {
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid #e2e8f0;
+}
+#chat-txt {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  outline: none;
+  font-size: 0.9rem;
+}
+#chat-txt:focus { border-color: #2563eb; }
+#chat-foot button {
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> Home</a>
+        <a href="about.html"><span class="icon">👤</span> About</a>
+        <a href="courses.html"><span class="icon">📚</span> Courses</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI Platform</a>
+        <a href="showcase.html"><span class="icon">🏆</span> Showcase</a>
+        <a href="contact.html"><span class="icon">📧</span> Contact</a>
+        <div class="lang-toggle">
+          <a href="index.html" class="active">EN</a>
+          <a href="cn/index.html">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div>
+          <h1>Save <span>10+ Hours</span> Every Week on Teaching</h1>
+          <p>Join 50+ Hong Kong schools. Save hours every week on grading and lesson planning. Get your evenings back.</p>
+          <div class="hero-buttons">
+            <a href="ai-tools.html" class="btn-primary">Explore AI Platform</a>
+            <a href="courses.html" class="btn-secondary">View Courses</a>
+          </div>
+        </div>
+        <div style="position: relative; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+          <iframe width="100%" height="400" src="https://www.youtube.com/embed/NofXB9lqPYo?rel=0" title="LSI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block;"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+
+<!-- Schools Section -->
+  <section class="schools-section">
+    <p class="schools-title">Trusted by 20+ Schools Across Hong Kong</p>
+    <div class="logo-marquee-container">
+      <div class="logo-marquee">
+        <div class="logo-item">
+          <img src="images/school-logos/school-6.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-11.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-9.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-5.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-3.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-10.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-4.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-1.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-7.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-2.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-8.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-6.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-11.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-9.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-5.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-3.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-10.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-4.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-1.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-7.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-2.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-8.jpg" alt="Partner School">
+        </div>
+      </div>
+      <div class="logo-marquee reverse">
+        <div class="logo-item">
+          <img src="images/school-logos/school-13.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-21.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-20.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-16.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-19.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-14.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-15.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-12.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-17.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-18.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-13.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-21.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-20.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-16.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-19.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-14.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-15.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-12.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-17.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="images/school-logos/school-18.jpg" alt="Partner School">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Section -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>AI Platform - Tools That Save You Time</h2>
+        <p>Comprehensive ecosystem designed to transform teaching and learning in Hong Kong schools.</p>
+      </div>
+      <div class="tools-grid">
+        <a href="contact.html" class="tool-card">
+          <div class="tool-image">
+            <img src="images/ai-automation.jpg" alt="AI Automation">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">⚡ Automation</span>
+            <h3>AI School Automation</h3>
+            <p>Automate school workflows - attendance, reports, admin tasks. Save hours on repetitive work.</p>
+          </div>
+        </a>
+        <a href="https://wiki.lsistream.ai" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="images/llm-wiki.jpg" alt="LLM Wiki">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-wiki">📚 Knowledge Base</span>
+            <h3>DSE Wiki</h3>
+            <p>Generate complete lesson plans in seconds. Objectives, activities, worksheets, and assessments - all done.</p>
+          </div>
+        </a>
+        <a href="https://dse.lsistream.ai/" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="images/dse-learn.jpg" alt="LSI DSE Learn">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-cypress">🎯 DSE Prep</span>
+            <h3>Practice Paper Creator</h3>
+            <p>See who is struggling. See who is excelling. Track every student automatically, no spreadsheets needed.</p>
+          </div>
+        </a>
+        <a href="https://www.cypressai.shop/login" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="images/learning-buddy.jpg" alt="Learning Buddy">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-cypress">🎯 Student Companion</span>
+            <h3>Homework Helper</h3>
+            <p>Students get help 24/7. Teachers save time answering the same questions.</p>
+          </div>
+        </a>
+        <a href="https://www.vispace.io/" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="images/metaverse.jpg" alt="Meta School">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-vispace">🌐 Metaverse Learning</span>
+            <h3>VR Learning</h3>
+            <p>Immersive virtual reality lessons. Engage students like never before.</p>
+          </div>
+        </a>
+        <a href="https://aiscanner.cypressai.shop/?code=50e35c96-fa01-4a1a-a48f-3ee49d6b93f9" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="images/ai-automation.jpg" alt="Snap & Grade">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge" style="background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white;">📷 Scanner</span>
+            <h3>Grade & Track</h3>
+            <p>Scan and grade student worksheets instantly. Upload images and let evaluate answers automatically.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Get Your Time Back?</h2>
+      <p>Contact us for a demo or custom package tailored to your needs.</p>
+      <a href="contact.html" class="cta-button">Get in Touch →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI</h3>
+        <p>Empowering educators and students with smart tools for smarter teaching and learning.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI Platform</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI Platform</h4>
+        <ul>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI Platform</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>Kwai Chung, N.T.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Language Services International (PET) Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👤 About</a>
+    <a href="courses.html">📚 Courses</a>
+    <a href="ai-tools.html">🤖 AI Platform</a>
+    <a href="contact.html">📧 Contact</a>
+    <div class="lang-toggle">
+      <a href="index.html" class="active">EN</a>
+      <a href="cn/index.html">中</a>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="js/three-bg.js"></script>  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js")
+          .then(reg => console.log("Service Worker registered"))
+          .catch(err => console.log("SW registration failed:", err));
+      });
+    }
+  </script>
+  <script>
+// LSI Chatbot - Self-invoking to ensure it runs
+(function() {
+  const chatQuestions = {
+    en: [
+      { q: "What teaching tools do you offer?", a: "We offer 7 smart tools:\n\n• School Platform - Student management\n• Learning Buddy - tutoring\n• Meta School - VR learning\n• LLM Wiki - Bilingual knowledge base\n• Grading Scanner - Scan & grade papers\n• DSE Learn - DSE exam prep\n• Cypress - Full learning platform" },
+      { q: "Do you offer teacher training?", a: "Yes! We provide:\n\n• teaching tools workshops (2-4 hours)\n• Integration training for existing systems\n• Ongoing support and consultation\n\nTraining sessions can be customized for your school's needs." },
+      { q: "How to get started?", a: "Getting started is easy:\n\n1. Contact us via email or phone\n2. Free demo session (30 min)\n3. Pilot program (1-2 weeks)\n4. Full implementation\n\nEmail: lsistreamai@gmail.com\nPhone: +852 9828 2172" },
+      { q: "Is there bilingual support?", a: "Yes! All our tools support:\n\n• English\n• Traditional Chinese (香港)\n• We use Hong Kong EDB curriculum terminology\n\nPerfect for local and international schools." },
+      { q: "Do you work with primary schools?", a: "Absolutely! Our tools work for:\n\n• Primary schools (P1-P6)\n• Secondary schools (S1-S6)\n• DSE preparation\n• STEAM programs\n\nOver 11 partner teachers across Hong Kong." }
+    ],
+    cn: [
+      { q: "你們提供哪些AI工具？", a: "我們提供7種AI工具：\n\n• AI學校平台 - 學生管理\n• 學習夥伴 - AI輔導\n• 元學校 - VR學習\n• LLM百科 - 雙語知識庫\n• AI評分掃描器 - 掃描評分試卷\n• DSE學習 - DSE考試準備\n• Cypress - 完整學習平台" },
+      { q: "費用是多少？", a: "按學校規模定價：\n\n• 基礎版：HK$5,000/年（最多500學生）\n• 標準版：HK$12,000/年（最多2,000學生）\n• 專業版：HK$25,000/年（無限學生）\n\n聯絡我們獲取定制報價！" },
+      { q: "有教師培訓嗎？", a: "有的！我們提供：\n\n• AI工具工作坊（2-4小時）\n• 系統整合培訓\n• 持續支援和諮詢\n\n培訓可按學校需求定制。" },
+      { q: "如何開始使用？", a: "開始很簡單：\n\n1. 電郵或電話聯絡我們\n2. 免費示範（30分鐘）\n3. 試用計劃（1-2週）\n4. 全面實施\n\n電郵：lsistreamai@gmail.com\n電話：+852 9828 2172" },
+      { q: "支援雙語嗎？", a: "是的！所有工具支援：\n\n• 英文\n• 繁體中文（香港）\n• 使用香港教育局課程術語\n\n適合本地和國際學校。" },
+      { q: "有小學版本嗎？", a: "當然！我們的工具適用於：\n\n• 小學（小一至小六）\n• 中學（中一至中六）\n• DSE準備\n• STEAM課程\n\n超過11位合作教師遍佈香港。" }
+    ]
+  };
+
+  let currentLang = 'en';
+  let isOpen = false;
+  let conversationHistory = [];
+
+  function addStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+      #lsi-chat-toggle {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 60px !important;
+        height: 60px !important;
+        background: linear-gradient(135deg, #1e3a5f, #2563eb) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 28px !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 20px rgba(30, 58, 95, 0.4) !important;
+        z-index: 999999 !important;
+        transition: transform 0.3s, box-shadow 0.3s !important;
+        border: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+      #lsi-chat-toggle:hover, #lsi-chat-toggle:active {
+        transform: scale(1.1) !important;
+        box-shadow: 0 6px 30px rgba(30, 58, 95, 0.5) !important;
+      }
+      #lsi-chat-window {
+        position: fixed !important;
+        bottom: 90px !important;
+        right: 20px !important;
+        width: 360px !important;
+        max-width: calc(100vw - 40px) !important;
+        height: 500px !important;
+        max-height: 70vh !important;
+        background: white !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 50px rgba(0,0,0,0.25) !important;
+        display: none !important;
+        flex-direction: column !important;
+        z-index: 999998 !important;
+        overflow: hidden !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      }
+      #lsi-chat-window.open {
+        display: flex !important;
+      }
+      #lsi-chat-header {
+        background: linear-gradient(135deg, #1e3a5f, #2563eb) !important;
+        color: white !important;
+        padding: 14px 16px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      #lsi-chat-title {
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+      }
+      #lsi-chat-close {
+        background: rgba(255,255,255,0.2) !important;
+        border: none !important;
+        color: white !important;
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 50% !important;
+        cursor: pointer !important;
+        font-size: 16px !important;
+      }
+      #lsi-chat-messages {
+        flex: 1 !important;
+        padding: 16px !important;
+        overflow-y: auto !important;
+        background: #f8fafc !important;
+      }
+      .lsi-chat-msg {
+        margin-bottom: 12px !important;
+        padding: 10px 14px !important;
+        border-radius: 12px !important;
+        max-width: 85% !important;
+        line-height: 1.5 !important;
+        font-size: 0.9rem !important;
+      }
+      .lsi-chat-msg.user {
+        background: linear-gradient(135deg, #1e3a5f, #2563eb) !important;
+        color: white !important;
+        margin-left: auto !important;
+      }
+      .lsi-chat-msg.bot {
+        background: white !important;
+        color: #1e293b !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+      #lsi-chat-questions {
+        padding: 10px 12px !important;
+        background: #f1f5f9 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        max-height: 100px !important;
+        overflow-y: auto !important;
+      }
+      .lsi-q-btn {
+        background: white !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 16px !important;
+        padding: 6px 12px !important;
+        font-size: 0.75rem !important;
+        cursor: pointer !important;
+        color: #475569 !important;
+        font-family: inherit !important;
+      }
+      .lsi-q-btn:hover, .lsi-q-btn:active {
+        background: #e0e7ff !important;
+        border-color: #2563eb !important;
+        color: #1e3a5f !important;
+      }
+      #lsi-chat-input-area {
+        padding: 12px !important;
+        display: flex !important;
+        gap: 8px !important;
+        border-top: 1px solid #e2e8f0 !important;
+        background: white !important;
+      }
+      #lsi-chat-input {
+        flex: 1 !important;
+        padding: 10px 14px !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 20px !important;
+        outline: none !important;
+        font-size: 0.9rem !important;
+        font-family: inherit !important;
+      }
+      #lsi-chat-input:focus {
+        border-color: #2563eb !important;
+      }
+      #lsi-chat-send {
+        background: linear-gradient(135deg, #1e3a5f, #2563eb) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 20px !important;
+        padding: 10px 16px !important;
+        cursor: pointer !important;
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        font-family: inherit !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function createChatButton() {
+    const btn = document.createElement('div');
+    btn.id = 'lsi-chat-toggle';
+    btn.innerHTML = '💬';
+    document.body.appendChild(btn);
+    return btn;
+  }
+
+  function createChatWindow() {
+    const chat = document.createElement('div');
+    chat.id = 'lsi-chat-window';
+    chat.innerHTML = `
+      <div id="lsi-chat-header">
+        <span id="lsi-chat-title">LSI Assistant</span>
+        <button id="lsi-chat-close">✕</button>
+      </div>
+      <div id="lsi-chat-messages"></div>
+      <div id="lsi-chat-questions"></div>
+      <div id="lsi-chat-input-area">
+        <input type="text" id="lsi-chat-input" placeholder="Type your question...">
+        <button id="lsi-chat-send">Send</button>
+      </div>
+    `;
+    document.body.appendChild(chat);
+    return chat;
+  }
+
+  function showQuestions() {
+    const container = document.getElementById('lsi-chat-questions');
+    container.innerHTML = '';
+    
+    chatQuestions[currentLang].forEach(item => {
+      const btn = document.createElement('button');
+      btn.className = 'lsi-q-btn';
+      btn.textContent = item.q;
+      btn.onclick = () => askQuestion(item);
+      container.appendChild(btn);
+    });
+  }
+
+  function addUserMessage(text) {
+    const messagesDiv = document.getElementById('lsi-chat-messages');
+    const msg = document.createElement('div');
+    msg.className = 'lsi-chat-msg user';
+    msg.textContent = text;
+    messagesDiv.appendChild(msg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    conversationHistory.push({ role: 'user', text });
+  }
+
+  function addBotMessage(text) {
+    const messagesDiv = document.getElementById('lsi-chat-messages');
+    const msg = document.createElement('div');
+    msg.className = 'lsi-chat-msg bot';
+    msg.innerHTML = text.replace(/\n/g, '<br>');
+    messagesDiv.appendChild(msg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    conversationHistory.push({ role: 'bot', text });
+  }
+
+  function askQuestion(item) {
+    addUserMessage(item.q);
+    
+    const messagesDiv = document.getElementById('lsi-chat-messages');
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'lsi-chat-msg bot';
+    typingDiv.textContent = '...';
+    messagesDiv.appendChild(typingDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    setTimeout(() => {
+      typingDiv.remove();
+      addBotMessage(item.a);
+    }, 500);
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('lsi-chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    
+    addUserMessage(text);
+    input.value = '';
+    
+    const questions = chatQuestions[currentLang];
+    let found = questions.find(item => 
+      text.toLowerCase().includes(item.q.toLowerCase().split(' ')[0]) ||
+      item.q.toLowerCase().includes(text.toLowerCase().split(' ')[0])
+    );
+    
+    setTimeout(() => {
+      if (found) {
+        addBotMessage(found.a);
+      } else {
+        addBotMessage(currentLang === 'en' 
+          ? "Thanks for your question! For detailed assistance, please contact us:\n\n📧 lsistreamai@gmail.com\n📞 +852 9828 2172\n\nOr click one of the suggested questions above."
+          : "謝謝你的問題！如需詳細協助，請聯絡我們：\n\n📧 lsistreamai@gmail.com\n📞 +852 9828 2172\n\n或點擊上方的建議問題。");
+      }
+    }, 600);
+  }
+
+  function toggleChat() {
+    const chat = document.getElementById('lsi-chat-window');
+    isOpen = !isOpen;
+    
+    if (isOpen) {
+      chat.classList.add('open');
+      if (conversationHistory.length === 0) {
+        addBotMessage(currentLang === 'en' 
+          ? "Hello! 👋 How can I help you today? Click a question below or type your own." 
+          : "你好！👋 有什麼可以幫你？點擊下方問題或輸入你的問題。");
+        showQuestions();
+      }
+    } else {
+      chat.classList.remove('open');
+    }
+  }
+
+  function init() {
+    currentLang = window.location.pathname.includes('/cn/') ? 'cn' : 'en';
+    
+    addStyles();
+    createChatButton();
+    createChatWindow();
+
+    document.getElementById('lsi-chat-toggle').addEventListener('click', toggleChat);
+    document.getElementById('lsi-chat-close').addEventListener('click', toggleChat);
+    document.getElementById('lsi-chat-send').addEventListener('click', sendMessage);
+    document.getElementById('lsi-chat-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  }
+
+  // Run when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+  </script>
+  <script>
+// Simple LSI Chatbot
+window.addEventListener('load', function() {
+  console.log('LSI Chatbot loading...');
+  
+  // Create button
+  var btn = document.createElement('div');
+  btn.id = 'chat-bubble';
+  btn.innerHTML = '💬';
+  btn.onclick = function() {
+    var chat = document.getElementById('chat-panel');
+    chat.style.display = chat.style.display === 'none' ? 'flex' : 'none';
+  };
+  document.body.appendChild(btn);
+  
+  // Create chat panel
+  var panel = document.createElement('div');
+  panel.id = 'chat-panel';
+  panel.style.display = 'none';
+  panel.innerHTML = '<div id="chat-head"><b>LSI Assistant</b><span onclick="document.getElementById(\'chat-panel\').style.display=\'none\'" style="cursor:pointer;float:right">✕</span></div><div id="chat-body"><div class="msg bot">Hello! 👋 How can I help you today?</div></div><div id="chat-foot"><input type="text" id="chat-txt" placeholder="Type a message..."><button onclick="sendMsg()">Send</button></div>';
+  document.body.appendChild(panel);
+  
+  document.getElementById('chat-txt').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') sendMsg();
+  });
+});
+
+function sendMsg() {
+  var txt = document.getElementById('chat-txt').value.trim();
+  if (!txt) return;
+  var body = document.getElementById('chat-body');
+  body.innerHTML += '<div class="msg user">' + txt + '</div>';
+  document.getElementById('chat-txt').value = '';
+  setTimeout(function() {
+    body.innerHTML += '<div class="msg bot">Thanks for your question! For assistance, email: lsistreamai@gmail.com or call: +852 9828 2172</div>';
+    body.scrollTop = body.scrollHeight;
+  }, 500);
+  body.scrollTop = body.scrollHeight;
+}
+  </script>
+</body>
+</html>

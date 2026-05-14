@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Team Page Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    
+    .section { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    
+    .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; color: #1e3a5f; margin-bottom: 1rem; }
+    .section-subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    
+    /* Story Section */
+    .story-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+    
+    .story-image { border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .story-image img { width: 100%; height: auto; display: block; }
+    
+    .story-content h2 { font-size: 2rem; color: #1e3a5f; margin-bottom: 1.5rem; }
+    .story-content p { color: #64748b; line-height: 1.8; margin-bottom: 1rem; font-size: 1.05rem; }
+    .story-highlight { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 1.5rem; border-radius: 1rem; margin-top: 1.5rem; }
+    .story-highlight strong { font-size: 1.25rem; }
+    
+    /* Founder Section */
+    .founder-section {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 4rem;
+      margin-bottom: 5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .founder-grid { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; align-items: start; }
+    
+    .founder-photo {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+      font-weight: 800;
+    }
+    
+    .founder-info h2 { font-size: 2rem; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .founder-title { color: #2563eb; font-weight: 500; margin-bottom: 1.5rem; }
+    .founder-bio { color: #64748b; line-height: 1.8; margin-bottom: 1.5rem; }
+    
+    .credentials { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+    .credential {
+      background: #f1f5f9;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: #334155;
+      font-weight: 500;
+    }
+    
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+    
+    .team-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .team-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 auto 1rem;
+    }
+    
+    .team-card h3 { font-size: 1.1rem; color: #1e3a5f; margin-bottom: 0.25rem; }
+    .team-card .role { font-size: 0.85rem; color: #2563eb; margin-bottom: 0.75rem; }
+    .team-card p { font-size: 0.9rem; color: #64748b; line-height: 1.6; }
+    
+    /* Advisors */
+    .advisors-section {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .advisors-section h2 { text-align: center; font-size: 1.75rem; color: #1e3a5f; margin-bottom: 2rem; }
+    
+    .advisor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    
+    .advisor-card { text-align: center; padding: 1.5rem; }
+    .advisor-avatar { width: 80px; height: 80px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: #1e3a5f; font-size: 1.5rem; font-weight: 700; margin: 0 auto 1rem; }
+    .advisor-card h4 { font-size: 1rem; color: #1e3a5f; margin-bottom: 0.25rem; }
+    .advisor-card .title { font-size: 0.8rem; color: #2563eb; }
+    .advisor-card .org { font-size: 0.85rem; color: #64748b; margin-top: 0.5rem; }
+    
+    /* Partners */
+    .partners { text-align: center; margin-top: 3rem; }
+    .partners h3 { font-size: 1.25rem; color: #1e3a5f; margin-bottom: 1.5rem; }
+    .partner-logos { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; opacity: 0.7; }
+    
+    @media (max-width: 768px) {
+      .story-section { grid-template-columns: 1fr; }
+      .founder-grid { grid-template-columns: 1fr; text-align: center; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .advisor-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <h1 class="section-title">Meet the Team Behind LSI</h1>
+    <p class="section-subtitle">Education experts + AI specialists working together to transform Hong Kong classrooms</p>
+    
+    <!-- Story -->
+    <div class="story-section">
+      <div class="story-image">
+        <div style="background: linear-gradient(135deg, #1e3a5f, #2563eb); height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; text-align: center; padding: 2rem;">
+          Founded in Hong Kong<br>for Hong Kong Schools
+        </div>
+      </div>
+      <div class="story-content">
+        <h2>Our Story</h2>
+        <p>LSI started in 2015 when Patrick Siu, a veteran educator, noticed that Hong Kong teachers spent more time on paperwork than actual teaching. He asked: "What if AI could handle the repetitive tasks, so teachers can focus on what matters most — the students?"</p>
+        <p>Today, LSI serves 20+ schools across Hong Kong, from elite DSE schools to international institutions. Our team combines decades of classroom experience with cutting-edge AI development.</p>
+        <div class="story-highlight">
+          <strong>Our mission:</strong> Give every Hong Kong student access to world-class AI-powered education, in both English and Chinese.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Founder -->
+    <div class="founder-section">
+      <div class="founder-grid">
+        <div class="founder-photo">PS</div>
+        <div class="founder-info">
+          <h2>Patrick Siu</h2>
+          <p class="founder-title">Founder & CEO</p>
+          <p class="founder-bio">Patrick has 15+ years in Hong Kong education, including senior teaching roles at top DSE schools. He founded LSI after seeing how technology could transform classroom efficiency. Patrick holds degrees from University of Hong Kong and has trained 500+ teachers in AI-assisted pedagogy.</p>
+          <p class="founder-bio">"Our goal isn't to replace teachers — it's to give them superpowers. Every hour saved on grading is an hour gained for inspiring students."</p>
+          <div class="credentials">
+            <span class="credential">🎓 HKU Graduate</span>
+            <span class="credential">📚 15+ Years Education</span>
+            <span class="credential">🏆 DSE Expert</span>
+            <span class="credential">🤖 AI EdTech Pioneer</span>
+            <span class="credential">👥 500+ Teachers Trained</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Team -->
+    <h2 class="section-title" style="font-size: 1.75rem;">Our Team</h2>
+    
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">XC</div>
+        <h3>Xeron Chan</h3>
+        <p class="role">AI Engineer Lead</p>
+        <p>Former Google engineer. Builds the AI brains behind Learning Buddy and grading automation.</p>
+      </div>
+      
+      <div class="team-card">
+        <div class="team-avatar">WC</div>
+        <h3>Wendy Chan</h3>
+        <p class="role">Curriculum Director</p>
+        <p>Former panel head at elite HK school. Ensures all content aligns with DSE and IB standards.</p>
+      </div>
+      
+      <div class="team-card">
+        <div class="team-avatar">RL</div>
+        <h3>Ryan Liu</h3>
+        <p class="role">Product Manager</p>
+        <p>10+ years EdTech experience. Translates teacher needs into product features.</p>
+      </div>
+      
+      <div class="team-card">
+        <div class="team-avatar">JL</div>
+        <h3>Jessica Lee</h3>
+        <p class="role">Success Manager</p>
+        <p>Onboards new schools and ensures teachers get maximum value from LSI tools.</p>
+      </div>
+    </div>
+    
+    <!-- Advisors -->
+    <div class="advisors-section">
+      <h2>Advisory Board</h2>
+      
+      <div class="advisor-grid">
+        <div class="advisor-card">
+          <div class="advisor-avatar">KT</div>
+          <h4>Dr. Kenneth Tam</h4>
+          <p class="title">Education Technology Advisor</p>
+          <p class="org">HKU Faculty of Education</p>
+        </div>
+        
+        <div class="advisor-card">
+          <div class="advisor-avatar">ML</div>
+          <h4>Margaret Lee</h4>
+          <p class="title">School Partnership Advisor</p>
+          <p class="org">Former Principal, EDB</p>
+        </div>
+        
+        <div class="advisor-card">
+          <div class="advisor-avatar">DC</div>
+          <h4>David Cheng</h4>
+          <p class="title">AI Ethics Advisor</p>
+          <p class="org">HKUST Computer Science</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Partners -->
+    <div class="partners">
+      <h3>Trusted by Schools Across Hong Kong</h3>
+      <div class="partner-logos">
+        <span>🏫 St. Paul's</span>
+        <span>🏫 Pui Ching</span>
+        <span>🏫 DBS</span>
+        <span>🏫 Heep Yunn</span>
+        <span>🏫 True Light</span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

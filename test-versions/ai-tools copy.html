@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tools | LSI Education AI</title>
+  <meta name="description" content="LSI AI Tools - AI Automation, LLM Wiki, LSI DSE Learn, AI School Platform, Learning Buddy, and Meta School.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #334155; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+/* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .nav-links a .icon { font-size: 1rem; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #1e3a5f;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    
+    /* Page Header */
+    .page-header { padding: 8rem 0 5rem; background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; text-align: center; }
+    .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+    
+    /* Tools Grid */
+    .tools-section { padding: 5rem 0; }
+    
+    .tools-grid { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 2rem; 
+    }
+    
+    .tool-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    }
+    
+    .tool-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .tool-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .tool-content {
+      padding: 1.5rem;
+    }
+    
+    .tool-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .badge-automation { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+    .badge-wiki { background: #dbeafe; color: #1e40af; }
+    .badge-dse { background: #d1fae5; color: #065f46; }
+    .badge-platform { background: #dbeafe; color: #1e40af; }
+    .badge-buddy { background: #d1fae5; color: #059669; }
+    .badge-meta { background: #ede9fe; color: #7c3aed; }
+    
+    .tool-card h3 { font-size: 1.5rem; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .tool-card p { color: #64748b; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    
+    .feature-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .feature-list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .feature-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-weight: 600;
+    }
+    
+    .btn-launch {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 100px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-primary { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; }
+    .btn-primary:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); }
+    .btn-secondary { background: #f1f5f9; color: #1e3a5f; }
+    .btn-secondary:hover { background: #e2e8f0; }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 768px) {
+      .tools-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .lang-toggle { display: none; }
+      .mobile-toggle { display: block; }
+      .page-header h1 { font-size: 2rem; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> Home</a>
+        <a href="about.html"><span class="icon">👤</span> About</a>
+        <a href="courses.html"><span class="icon">📚</span> Courses</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI Platform</a>
+        <a href="showcase.html"><span class="icon">🏆</span> Showcase</a>
+        <a href="contact.html"><span class="icon">📧</span> Contact</a>
+        <div class="lang-toggle">
+          <a href="ai-tools.html" class="active">EN</a>
+          <a href="cn/ai-tools.html">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👤 About</a>
+    <a href="courses.html">📚 Courses</a>
+    <a href="ai-tools.html">🤖 AI Platform</a>
+    <a href="contact.html">📧 Contact</a>
+    <div class="lang-toggle">
+      <a href="ai-tools.html" class="active">EN</a>
+      <a href="cn/ai-tools.html">中</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>🤖 AI Platform Ecosystem</h1>
+    <p>Comprehensive AI ecosystem designed to transform teaching and learning in Hong Kong schools</p>
+  </div>
+
+  <!-- Tools Section -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="tools-grid">
+        
+        <!-- AI Automation -->
+        <div class="tool-card" id="automation">
+          <div class="tool-image">
+            <img src="images/ai-automation.jpg" alt="AI Automation">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-automation">⚡ Automation</span>
+            <h3>School Automation</h3>
+            <p>Automate repetitive tasks - lesson planning, grading, progress reports, and school admin workflows.</p>
+            <ul class="feature-list">
+              <li>AI-powered lesson plan generator</li>
+              <li>Automated grading system</li>
+              <li>Progress report automation</li>
+              <li>School admin workflow optimization</li>
+            </ul>
+            <a href="contact.html" class="btn-launch btn-secondary">Coming Soon</a>
+          </div>
+        </div>
+        
+        <!-- LLM Wiki -->
+        <div class="tool-card" id="wiki">
+          <div class="tool-image">
+            <img src="images/llm-wiki.jpg" alt="LLM Wiki">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-wiki">📚 Knowledge Base</span>
+            <h3>LLM Wiki</h3>
+            <p>Bilingual knowledge hub for Hong Kong education with curriculum resources and school data.</p>
+            <ul class="feature-list">
+              <li>EDB curriculum-aligned content</li>
+              <li>Bilingual Chinese & English</li>
+              <li>School database integration</li>
+              <li>Teacher resource library</li>
+            </ul>
+            <a href="https://wiki.lsistream.ai" target="_blank" class="btn-launch btn-primary">Launch Wiki →</a>
+          </div>
+        </div>
+        
+        <!-- LSI DSE Learn -->
+        <div class="tool-card" id="dse">
+          <div class="tool-image">
+            <img src="images/dse-learn.jpg" alt="LSI DSE Learn">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-dse">🎯 DSE Prep</span>
+            <h3>LSI DSE Learn</h3>
+            <p>AI-powered DSE practice platform with auto-generated quizzes and progress tracking.</p>
+            <ul class="feature-list">
+              <li>Auto-generated practice questions</li>
+              <li>DSE-style quiz formats</li>
+              <li>Progress tracking dashboard</li>
+              <li>Subject-specific practice modes</li>
+            </ul>
+            <a href="https://dse.lsistream.ai" target="_blank" class="btn-launch btn-primary">Launch DSE Learn →</a>
+          </div>
+        </div>
+        
+        <!-- AI School Platform -->
+        <div class="tool-card" id="lsi">
+          <div class="tool-image">
+            <img src="images/ai-school-platform.jpg" alt="AI School Platform">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-platform">📊 Micro-management</span>
+            <h3>AI School Platform</h3>
+            <p>School-wide AI platform for lesson planning, grading, and progress tracking.</p>
+            <ul class="feature-list">
+              <li>Smart quiz and assessment creator</li>
+              <li>Automated grading with feedback</li>
+              <li>Student progress dashboard</li>
+              <li>Teacher collaboration tools</li>
+            </ul>
+            <a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank" class="btn-launch btn-primary">Launch Platform →</a>
+          </div>
+        </div>
+        
+        <!-- Learning Buddy -->
+        <div class="tool-card" id="cypress">
+          <div class="tool-image">
+            <img src="images/learning-buddy.jpg" alt="Learning Buddy">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-buddy">🎓 Student Companion</span>
+            <h3>Learning Buddy</h3>
+            <p>Personalized AI tutor for students, available 24/7 for homework help.</p>
+            <ul class="feature-list">
+              <li>Personalized learning paths</li>
+              <li>Practice question generator</li>
+              <li>Progress tracking for parents</li>
+              <li>24/7 homework assistance</li>
+            </ul>
+            <a href="https://www.cypressai.shop/login" target="_blank" class="btn-launch btn-primary">Launch Learning Buddy →</a>
+          </div>
+        </div>
+        
+        <!-- Meta School -->
+        <div class="tool-card" id="vispace">
+          <div class="tool-image">
+            <img src="images/metaverse.jpg" alt="Meta School">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-meta">🌐 Metaverse Learning</span>
+            <h3>Meta School</h3>
+            <p>Immersive VR/AR educational experiences for interactive learning.</p>
+            <ul class="feature-list">
+              <li>Virtual science labs</li>
+              <li>Historical reconstructions</li>
+              <li>Collaborative virtual classrooms</li>
+              <li>AR-enhanced textbooks</li>
+            </ul>
+            <a href="https://www.vispace.io/" target="_blank" class="btn-launch btn-primary">Launch Meta School →</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI Education AI</h3>
+        <p>Empowering educators and students with AI-powered tools for smarter teaching and learning.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI Platform</a></li></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI Platform</h4>
+        <ul>
+          <li><a href="https://wiki.lsistream.ai" target="_blank">LLM Wiki</a></li>
+          <li><a href="https://dse.lsistream.ai" target="_blank">LSI DSE Learn</a></li>
+          <li><a href="https://school-automation-light.vercel.app/" target="_blank">School Automation</a></li>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">AI School Platform</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">Learning Buddy</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">Meta School</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>Kwai Chung, N.T.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Language Services International (PET) Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

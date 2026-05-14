@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e3a5f">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="apple-touch-icon" href="../images/logo.jpg">
+  <title>LSI Education AI | AI-Powered Education Solutions</title>
+  <meta name="description" content="AI-powered education solutions for Hong Kong schools. LSI Platform, Cypress, and Vispace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { position: relative;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .nav-links a .icon { font-size: 1rem; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 8rem 1.5rem 6rem;
+      background: rgba(240, 249, 255, 0.3);
+    }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: #3b82f6; }
+    .hero p {
+      font-size: 1.25rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    .btn-secondary {
+      background: white;
+      color: #1e3a5f;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: #1e3a5f;
+    }
+    
+    /* Stats Bar */
+    .stats-bar {
+      padding: 3rem 1.5rem;
+      background: #f8fafc;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+    }
+    .stat-item p {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Tools Section */
+    .tools-section {
+      padding: 5rem 1.5rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .tool-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: block;
+    }
+    .tool-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    }
+    .tool-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .tool-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .tool-card:hover .tool-image img {
+      transform: scale(1.05);
+    }
+    .tool-card .tool-content {
+      padding: 1.5rem;
+    }
+    .tool-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .badge-lsi { background: #dbeafe; color: #1e40af; }
+    .badge-cypress { background: #d1fae5; color: #065f46; }
+    .badge-vispace { background: #ede9fe; color: #5b21b6; }
+    .badge-wiki { background: #fef3c7; color: #92400e; }
+    .tool-card h3 {
+      color: #1e3a5f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .tool-card p {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 5rem 1.5rem;
+      background: #f8fafc;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 1rem;
+    }
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-card h3 {
+      color: #1e3a5f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: #1e3a5f;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-buttons { justify-content: center; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .setup-fee-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  
+    /* School Logos Section */
+    .schools-section {
+      padding: 4rem 0;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .schools-title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+    .logo-marquee-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .logo-marquee {
+      display: flex;
+      gap: 2rem;
+      animation: marquee 30s linear infinite;
+    }
+    .logo-marquee.reverse {
+      animation: marquee-reverse 30s linear infinite;
+    }
+    .logo-marquee:hover {
+      animation-play-state: paused;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes marquee-reverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .logo-item {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .logo-item:hover {
+      transform: scale(1.15);
+    }
+    .logo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .setup-fee-grid { grid-template-columns: 1fr; }
+      .logo-item {
+        width: 50px;
+        height: 50px;
+      }
+      .logo-marquee {
+        gap: 1rem;
+      }
+    }
+/* FEATURE 2: Pricing Section */
+    .pricing-section { padding: 5rem 0; background: #f8fafc; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; align-items: stretch; }
+    .pricing-card { background: white; border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
+    .pricing-card.popular { border: 2px solid #2563eb; }
+    .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 0.5rem 1.5rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
+    .plan-name { font-size: 1.25rem; font-weight: 600; color: #1e3a5f; }
+    .plan-desc { font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; }
+    .price { font-size: 2.5rem; font-weight: 800; color: #1e3a5f; }
+    .price span { font-size: 1rem; color: #64748b; font-weight: 400; }
+    .features-list { list-style: none; margin: 1.5rem 0; }
+    .features-list li { padding: 0.5rem 0; color: #334155; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
+    .features-list li::before { content: '✓'; color: #22c55e; font-weight: 600; }
+    .btn-card { display: block; width: 100%; padding: 1rem; border-radius: 100px; text-align: center; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+    .btn-card.primary { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; }
+    .btn-card.secondary { background: #f1f5f9; color: #1e3a5f; }
+
+    /* Mobile Pricing Fix */
+    .setup-fee-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.popular { transform: none; }
+    }
+    @media (max-width: 768px) {
+      .setup-fee-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.popular { transform: none; }
+      .pricing-card { padding: 1.5rem; }
+      .price { font-size: 2rem; }
+    }
+
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+    <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> 主頁</a>
+        <a href="about.html"><span class="icon">👤</span> 關於我們</a>
+        <a href="courses.html"><span class="icon">📚</span> 課程</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI工具</a>
+        <a href="skills.html"><span class="icon">👨‍🏫</span> 教師資源</a>
+        <a href="showcase.html"><span class="icon">🏆</span> 作品</a>
+        <a href="contact.html"><span class="icon">📧</span> 聯絡我們</a>
+        <div class="lang-toggle">
+          <a href="../index.html">EN</a>
+          <a href="#" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div>
+          <h1>AI<span>教育</span>解決方案</h1>
+          <p>為香港學校的教育者和學生提供尖端AI工具、全面課程及創新STEAM課程。</p>
+          <div class="hero-buttons">
+            <a href="ai-tools.html" class="btn-primary">探索AI工具</a>
+            <a href="courses.html" class="btn-secondary">查看課程</a>
+          </div>
+        </div>
+        <div style="position: relative; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+          <iframe width="100%" height="400" src="https://www.youtube.com/embed/NofXB9lqPYo?rel=0" title="LSI Education AI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: block;"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>9,000+</h3>
+          <p>學生人數</p>
+        </div>
+        <div class="stat-item">
+          <h3>50+</h3>
+          <p>合作學校</p>
+        </div>
+        <div class="stat-item">
+          <h3>10+</h3>
+          <p>年經驗</p>
+        </div>
+        <div class="stat-item">
+          <h3>6</h3>
+          <p>AI平台</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Tools Section -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our AI Ecosystem</h2>
+        <p>專為香港學校設計的全面AI生態系統，革新教與學。</p>
+      </div>
+      <div class="tools-grid">
+        <a href="contact.html" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/ai-automation.jpg" alt="AI Automation">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">⚡ Automation</span>
+            <h3>AI Automation</h3>
+            <p>Automate repetitive tasks - lesson planning, grading, progress reports, and school admin workflows.</p>
+          </div>
+        </a>
+        <a href="https://wiki.lsistream.ai" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/llm-wiki.jpg" alt="LLM Wiki">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-wiki">📚 Knowledge Base</span>
+            <h3>LLM Wiki</h3>
+            <p>香港教育的雙語知識中心，配備課程資源。and school data.</p>
+          </div>
+        </a>
+        <a href="https://dse.lsistream.ai" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/dse-learn.jpg" alt="LSI DSE學習平台">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-cypress">🎯 DSE Prep</span>
+            <h3>LSI DSE學習平台</h3>
+            <p>AI-powered DSE practice platform with auto-generated quizzes and progress tracking.</p>
+          </div>
+        </a>
+        <a href="ai-tools.html#lsi" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/ai-school-platform.jpg" alt="AI學校平台">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-lsi">📊 Micro-management</span>
+            <h3>AI學校平台</h3>
+            <p>School-wide AI platform for lesson planning, grading, and progress tracking.</p>
+          </div>
+        </a>
+        <a href="ai-tools.html#cypress" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/learning-buddy.jpg" alt="學習夥伴">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-cypress">🎯 Student Companion</span>
+            <h3>學習夥伴</h3>
+            <p>個性化AI導師，全天候為學生提供作業輔導。</p>
+          </div>
+        </a>
+        <a href="ai-tools.html#vispace" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/metaverse.jpg" alt="元宇宙學校">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge badge-vispace">🌐 Metaverse Learning</span>
+            <h3>元宇宙學校</h3>
+            <p>沉浸式VR/AR教育體驗，互動學習。</p>
+          </div>
+        </a>
+        <a href="https://aiscanner.cypressai.shop/?code=50e35c96-fa01-4a1a-a48f-3ee49d6b93f9" target="_blank" class="tool-card">
+          <div class="tool-image">
+            <img src="../images/ai-automation.jpg" alt="AI评分扫描器">
+          </div>
+          <div class="tool-content">
+            <span class="tool-badge" style="background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white;">📷 AI扫描器</span>
+            <h3>AI评分扫描器</h3>
+            <p>即时扫描及评分学生工作纸。上载图片，让AI自动评估答案。</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <h2 class="section-title">One-Time Investment</h2>
+      <p class="section-subtitle">All packages include VPN installation</p>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3 class="plan-name">Starter</h3>
+          <p class="plan-desc">Perfect for pilot programs</p>
+          <div class="price">HK$25,000</div>
+          <ul class="features-list">
+            <li>VPN Installation included</li>
+            <li>Test all 5 AI tools</li>
+            <li>Up to 200 students</li>
+            <li>1 training session</li>
+            <li>Email support</li>
+          </ul>
+          <a href="contact.html" class="btn-card primary">Book a Demo</a>
+        </div>
+        
+        <div class="pricing-card popular">
+          <span class="popular-badge">Most Popular</span>
+          <h3 class="plan-name">Professional</h3>
+          <p class="plan-desc">Complete AI ecosystem</p>
+          <div class="price">HK$40,000</div>
+          <ul class="features-list">
+            <li>VPN Installation included</li>
+            <li>Test all 5 AI tools</li>
+            <li>Up to 1,000 students</li>
+            <li>4 training sessions</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="contact.html" class="btn-card primary">Book a Demo</a>
+        </div>
+        
+        <div class="pricing-card">
+          <h3 class="plan-name">Enterprise</h3>
+          <p class="plan-desc">Full automation + custom tools</p>
+          <div class="price">HK$100,000</div>
+          <ul class="features-list">
+            <li>VPN Installation included</li>
+            <li>All 5 AI tools + custom tools</li>
+            <li>Unlimited students</li>
+            <li>Full automation</li>
+            <li>On-site training</li>
+            <li>Dedicated manager + 24/7 support</li>
+          </ul>
+          <a href="contact.html" class="btn-card primary">Book a Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Schools Section -->
+  <section class="schools-section">
+    <p class="schools-title">Trusted by 20+ Schools Across Hong Kong</p>
+    <div class="logo-marquee-container">
+      <div class="logo-marquee">
+        <div class="logo-item">
+          <img src="../images/school-logos/school-6.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-11.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-9.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-5.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-3.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-10.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-4.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-1.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-7.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-2.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-8.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-6.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-11.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-9.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-5.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-3.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-10.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-4.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-1.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-7.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-2.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-8.jpg" alt="Partner School">
+        </div>
+      </div>
+      <div class="logo-marquee reverse">
+        <div class="logo-item">
+          <img src="../images/school-logos/school-13.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-21.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-20.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-16.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-19.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-14.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-15.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-12.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-17.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-18.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-13.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-21.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-20.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-16.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-19.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-14.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-15.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-12.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-17.jpg" alt="Partner School">
+        </div>
+        <div class="logo-item">
+          <img src="../images/school-logos/school-18.jpg" alt="Partner School">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>準備好轉型你的學校？</h2>
+      <p>聯繫我們進行演示或根據您的需求定制方案。</p>
+      <a href="contact.html" class="cta-button">聯繫我們 →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI Education AI</h3>
+        <p>為香港學校提供AI教育解決方案，實現更智能的教與學。</p>
+      </div>
+      <div class="footer-col">
+        <h4>平台</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI工具</a></li>
+        <li><a href="skills.html">教師資源</a></li>
+          <li><a href="courses.html">課程</a></li>
+          <li><a href="about.html">關於我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI工具</h4>
+        <ul>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI平台</a></li>
+          <li><a href="https://dse.lsistream.ai" target="_blank">LSI DSE學習平台</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">學習夥伴</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">元宇宙學校</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>Kwai Chung, N.T.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 語言服務國際( PET )有限公司. 版權所有.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 主頁</a>
+    <a href="about.html">👤 關於我們</a>
+    <a href="courses.html">📚 課程</a>
+    <a href="ai-tools.html">🤖 AI工具</a>
+    <a href="skills.html">👨‍🏫 教師資源</a>
+    <a href="https://games.lsistream.ai" target="_blank">🎮 遊戲</a>
+    <a href="contact.html">📧 聯絡我們</a>
+    <div class="lang-toggle">
+      <a href="../index.html">EN</a>
+      <a href="#" class="active">中</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="js/three-bg.js"></script>  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js")
+          .then(reg => console.log("Service Worker registered"))
+          .catch(err => console.log("SW registration failed:", err));
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Platform | LSI Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .logo img {
+            height: 36px;
+            border-radius: 8px;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--primary); }
+        
+        .nav-cta {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        
+        .nav-cta:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Hero - Single line */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, #f0f9ff, white);
+        }
+        
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+        }
+        
+        /* Platform Sections */
+        .platform-section {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .section-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .section-header p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        /* Demos Grid */
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .demo-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        
+        .demo-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1);
+        }
+        
+        .demo-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .demo-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .demo-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .badge-blue { background: #dbeafe; color: #1d4ed8; }
+        .badge-green { background: #dcfce7; color: #15803d; }
+        .badge-orange { background: #ffedd5; color: #c2410c; }
+        .badge-purple { background: #f3e8ff; color: #7c3aed; }
+        
+        .demo-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        
+        .demo-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Workflow Steps */
+        .workflow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+        .step-icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        
+        .step-arrow {
+            color: var(--text-light);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .nav-links { display: none; }
+            .hero { padding: 100px 24px 40px; min-height: 50vh; }
+            .platform-section { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpg" alt="LSI">
+            <span class="logo-text">LSI Education</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="ai-tools.html" class="active">AI Platform</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero - Single Line -->
+    <section class="hero">
+        <h1>AI Platform • Wiki • Teacher Assistant • Learning Buddy • School Automation</h1>
+        <p>One integrated platform for Hong Kong schools. Save 10+ hours every week.</p>
+    </section>
+
+    <!-- AI Platform Demos -->
+    <section class="platform-section">
+        <div class="section-header">
+            <h2>Live Demos</h2>
+            <p>Click "Run Demo" to see each automation in action</p>
+        </div>
+        
+        <div class="demos-grid">
+            <!-- Wiki -->
+            <div class="demo-card">
+                <span class="demo-badge badge-blue">Wiki</span>
+                <h3>LLM Wiki</h3>
+                <p>Bilingual knowledge base aligned with Hong Kong EDB curriculum. DSE subjects in English & Chinese.</p>
+                <div class="workflow-steps">
+                    <div class="step"><span class="step-icon">📝</span>Search Topic</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">🔍</span>Query Wiki</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">📚</span>Get Results</div>
+                </div>
+                <a href="https://wiki-cn-full.vercel.app" target="_blank">
+                    <button class="demo-btn">Open Wiki →</button>
+                </a>
+            </div>
+
+            <!-- Teacher Assistant -->
+            <div class="demo-card">
+                <span class="demo-badge badge-green">Teaching</span>
+                <h3>Teacher Assistant</h3>
+                <p>AI-powered lesson planning, grading, and content creation for teachers.</p>
+                <div class="workflow-steps">
+                    <div class="step"><span class="step-icon">📄</span>Upload Material</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">✨</span>AI Processing</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">📋</span>Get Results</div>
+                </div>
+                <button class="demo-btn">Run Demo</button>
+            </div>
+
+            <!-- Learning Buddy -->
+            <div class="demo-card">
+                <span class="demo-badge badge-purple">Students</span>
+                <h3>Learning Buddy</h3>
+                <p>Personal AI tutor for students. 24/7 homework help, practice questions, and explanations.</p>
+                <div class="workflow-steps">
+                    <div class="step"><span class="step-icon">❓</span>Ask Question</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">🤖</span>AI Explains</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">💡</span>Learn</div>
+                </div>
+                <a href="https://www.cypressai.shop/login" target="_blank">
+                    <button class="demo-btn">Try Learning Buddy</button>
+                </a>
+            </div>
+
+            <!-- Instant Grading -->
+            <div class="demo-card">
+                <span class="demo-badge badge-green">Teaching</span>
+                <h3>Instant Paper Grading</h3>
+                <p>Snap a photo of student work → AI grades it → Record in gradebook automatically.</p>
+                <div class="workflow-steps">
+                    <div class="step"><span class="step-icon">📷</span>Photo Upload</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">✨</span>AI Grading</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">📊</span>Gradebook</div>
+                </div>
+                <button class="demo-btn">Run Demo</button>
+            </div>
+
+            <!-- Lesson Plan Generator -->
+            <div class="demo-card">
+                <span class="demo-badge badge-green">Teaching</span>
+                <h3>Lesson Plan Generator</h3>
+                <p>Enter topic → Generate complete lesson plan with materials aligned to EDB curriculum.</p>
+                <div class="workflow-steps">
+                    <div class="step"><span class="step-icon">📝</span>Topic Input</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">📖</span>Check EDB</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">📋</span>Generate</div>
+                </div>
+                <button class="demo-btn">Run Demo</button>
+            </div>
+
+            <!-- School Automation -->
+            <div class="demo-card">
+                <span class="demo-badge badge-orange">Admin</span>
+                <h3>School Automation</h3>
+                <p>Auto attendance, report cards, parent updates. Full school admin automation.</p>
+                <div class="workflow-steps">
+                    <div class="step"><span class="step-icon">📅</span>Schedule</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">⚙️</span>Automate</div>
+                    <span class="step-arrow">→</span>
+                    <div class="step"><span class="step-icon">✅</span>Complete</div>
+                </div>
+                <a href="https://school-automation-light.vercel.app/" target="_blank">
+                    <button class="demo-btn">See All Automations →</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Language Services International (PET) Ltd.</p>
+    </footer>
+</body>
+</html>

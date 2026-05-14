@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Page Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    
+    .section { padding: 5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    
+    .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; color: #1e3a5f; margin-bottom: 1rem; }
+    .section-subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; }
+    
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .pricing-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    
+    .pricing-card.popular {
+      border: 2px solid #2563eb;
+      transform: scale(1.05);
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .plan-name { font-size: 1.25rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .plan-desc { font-size: 0.9rem; color: #64748b; margin-bottom: 1.5rem; }
+    
+    .price { font-size: 3rem; font-weight: 800; color: #1e3a5f; }
+    .price span { font-size: 1rem; color: #64748b; font-weight: 400; }
+    .price-note { font-size: 0.85rem; color: #94a3b8; margin-bottom: 2rem; }
+    
+    .features-list { list-style: none; margin-bottom: 2rem; }
+    .features-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.95rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .features-list li::before { content: '✓'; color: #22c55e; font-weight: 600; }
+    
+    .btn-select {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 100px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn-primary { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; }
+    .btn-secondary { background: #f1f5f9; color: #1e3a5f; }
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    
+    /* Enterprise Section */
+    .enterprise-section {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      border-radius: 1.5rem;
+      padding: 3rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .enterprise-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .enterprise-content p { opacity: 0.9; }
+    .btn-cta { background: white; color: #1e3a5f; padding: 1rem 2rem; border-radius: 100px; font-weight: 600; text-decoration: none; }
+    
+    /* FAQ */
+    .faq-section { margin-top: 4rem; }
+    .faq-item { background: white; border-radius: 1rem; margin-bottom: 1rem; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .faq-q { font-weight: 600; color: #1e3a5f; margin-bottom: 0.75rem; }
+    .faq-a { color: #64748b; font-size: 0.95rem; line-height: 1.6; }
+    
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.popular { transform: none; }
+      .enterprise-section { flex-direction: column; text-align: center; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <h2 class="section-title">Simple, Transparent Pricing</h2>
+    <p class="section-subtitle">Choose the plan that fits your school's needs. All plans include onboarding support.</p>
+    
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="pricing-card">
+        <h3 class="plan-name">Starter</h3>
+        <p class="plan-desc">Perfect for pilot programs</p>
+        <div class="price">HK$3,888<span>/month</span></div>
+        <p class="price-note">or HK$38,888/year (save 17%)</p>
+        
+        <ul class="features-list">
+          <li>1 AI Tool (choose any)</li>
+          <li>Up to 200 students</li>
+          <li>Basic analytics</li>
+          <li>Email support</li>
+          <li>1 teacher training session</li>
+        </ul>
+        
+        <a href="#" class="btn-select btn-secondary">Start Free Trial</a>
+      </div>
+      
+      <!-- Professional (Popular) -->
+      <div class="pricing-card popular">
+        <span class="popular-badge">Most Popular</span>
+        <h3 class="plan-name">Professional</h3>
+        <p class="plan-desc">Complete AI ecosystem</p>
+        <div class="price">HK$8,888<span>/month</span></div>
+        <p class="price-note">or HK$88,888/year (save 17%)</p>
+        
+        <ul class="features-list">
+          <li>All 5 AI Tools</li>
+          <li>Up to 1,000 students</li>
+          <li>Advanced analytics & reports</li>
+          <li>Priority support</li>
+          <li>Quarterly training sessions</li>
+          <li>Custom branding</li>
+          <li>Parent portal access</li>
+        </ul>
+        
+        <a href="#" class="btn-select btn-primary">Book a Demo</a>
+      </div>
+      
+      <!-- Enterprise -->
+      <div class="pricing-card">
+        <h3 class="plan-name">Enterprise</h3>
+        <p class="plan-desc">For school networks</p>
+        <div class="price">Custom</div>
+        <p class="price-note">Volume discounts available</p>
+        
+        <ul class="features-list">
+          <li>Everything in Professional</li>
+          <li>Unlimited students</li>
+          <li>Dedicated account manager</li>
+          <li>Custom integrations</li>
+          <li>On-site training</li>
+          <li>SLA guarantee</li>
+          <li>Multi-school dashboard</li>
+        </ul>
+        
+        <a href="#" class="btn-select btn-secondary">Contact Sales</a>
+      </div>
+    </div>
+    
+    <!-- Enterprise CTA -->
+    <div class="enterprise-section">
+      <div class="enterprise-content">
+        <h3>Need a custom solution?</h3>
+        <p>We work with school networks, EDB, and educational organisations.</p>
+      </div>
+      <a href="#" class="btn-cta">Talk to Sales →</a>
+    </div>
+    
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2 class="section-title" style="font-size: 1.75rem;">Pricing FAQs</h2>
+      
+      <div class="faq-item">
+        <p class="faq-q">Can I try before committing?</p>
+        <p class="faq-a">Yes! We offer a 14-day free trial for the Starter plan. No credit card required. You'll have full access to one AI tool of your choice.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-q">What if we need more students?</p>
+        <p class="faq-a">You can upgrade at any time. Additional students are charged at HK$3.88/student/month on Professional plans.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-q">Is there a setup fee?</p>
+        <p class="faq-a">No setup fees for Starter and Professional plans. Enterprise plans may have a one-time integration fee depending on your requirements.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-q">Do you offer discounts?</p>
+        <p class="faq-a">Yes! Annual plans save 17%. We also offer discounts for: new schools (20% first year), school networks (volume), and EDB-registered charities.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

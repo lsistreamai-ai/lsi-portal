@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - LSI Education | LSI Education AI</title>
+  <meta name="description" content="Language Services International - AI-powered education solutions since 2015.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    
+    /* Page Hero */
+    .page-hero {
+      padding: 8rem 1.5rem 4rem;
+      background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+    }
+    .page-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      font-size: 1.25rem;
+      color: #64748b;
+    }
+    
+    /* Section */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 1.5rem;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .two-col p {
+      color: #64748b;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .section-image img {
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    /* Company Info */
+    .company-info {
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin-top: 2rem;
+    }
+    .company-info h3 {
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+    .info-row {
+      display: flex;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #1e3a5f;
+      width: 180px;
+      flex-shrink: 0;
+    }
+    .info-value {
+      color: #64748b;
+    }
+    
+    /* Mission Quote */
+    .mission-quote {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      padding: 3rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .mission-quote blockquote {
+      font-size: 1.5rem;
+      color: white;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .mission-quote cite {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    /* Stats Highlight */
+    .stats-highlight {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .stat-box .number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1e3a5f;
+    }
+    .stat-box .label {
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+    
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .team-card {
+      display: flex;
+      gap: 1.5rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-name {
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 0.25rem;
+    }
+    .team-role {
+      color: #3b82f6;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    .team-creds {
+      color: #64748b;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .page-hero h1 { font-size: 2rem; }
+      .two-col { gap: 2rem; }
+      .stats-highlight { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { flex-direction: column; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> 首頁</a>
+        <a href="about.html" class="active"><span class="icon">👤</span> 關於我們</a>
+        <a href="courses.html"><span class="icon">📚</span> 課程</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI工具</a>
+        <a href="showcase.html"><span class="icon">🏆</span> 作品</a>
+        <a href="contact.html"><span class="icon">📧</span> 聯繫我們</a>
+        <div class="lang-toggle">
+          <a href="../about.html">EN</a>
+          <a href="about.html" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>關於LSI</h1>
+      <p>自2015年起，以人工智能教育賦能師生。</p>
+    </div>
+  </section>
+
+  <!-- Company Overview -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2 class="section-title">公司概覽</h2>
+          <p>朗文致知教育科技有限公司自2015年起一直走在香港AI教育創新的前沿。我們專注於開發尖端的AI工具，服務師生，並與DSE及IB課程緊密結合。</p>
+          <p>我們的使命是縮短科技與教育之間的差距，讓全港學校都能使用人工智能學習工具。我們與教育工作者緊密合作，設計並實施切合不同需求的學習平台。</p><a href="../LSI_Introduction.pdf" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 20px; background: linear-gradient(135deg, #2563eb, #06b6d4); color: white; padding: 12px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 14px;">📄 下載公司簡介</a>
+          <div class="company-info">
+            <h3>公司資料</h3>
+            <div class="info-row">
+              <span class="info-label">公司名稱</span>
+              <span class="info-value">朗文致知教育科技有限公司</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">商業登記</span>
+              <span class="info-value">61683087</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">成立年份</span>
+              <span class="info-value">2015</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">地址</span>
+              <span class="info-value">新界葵涌</span>
+            </div>
+          </div>
+        </div>
+        <div class="section-image">
+          <img src="../images/ai-school-platform.jpg" alt="LSI AI平台">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <div class="two-col">
+        <div class="section-image">
+          <img src="../images/dse-class.jpg" alt="LSI課室">
+        </div>
+        <div>
+          <h2 class="section-title">發展歷程</h2>
+          <p>從語言服務供應商起步，發展成為AI教育科技的領導者，LSI不斷進化以滿足香港教育界不斷變化的需求。</p>
+          <a href="../LSI_Educational_Journey.pdf" target="_blank" class="download-btn">
+            📄 下載發展歷程PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">我們的團隊</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="../images/patrick-siu.jpg" alt="Patrick Siu">
+          </div>
+          <div>
+            <div class="team-name">Patrick Siu</div>
+            <div class="team-role">創辦人兼總監</div>
+            <div class="team-creds">教育工作者及演講者，專注於AI在教育領域的應用。帶領LSI實現科技增強學習的願景，服務香港學校。</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="../images/xeron-chan.jpg" alt="Xeron Chan">
+          </div>
+          <div>
+            <div class="team-name">Xeron Chan</div>
+            <div class="team-role">顧問</div>
+            <div class="team-creds">內蒙古政協委員。為教育政策和社區發展提供寶貴見解。</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="../images/davy-ng.jpg" alt="Dr. Davy Ng">
+          </div>
+          <div>
+            <div class="team-name">Dr. Davy Ng Tak Keung</div>
+            <div class="team-role">助理教授及教育顧問</div>
+            <div class="team-creds">香港中文大學教育與科技博士。教育大學助理教授。發表約95篇SCI期刊論文。</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">
+            <img src="../images/rono-sir.jpg" alt="Rono Sir">
+          </div>
+          <div>
+            <div class="team-name">Rono Sir</div>
+            <div class="team-role">物理教師</div>
+            <div class="team-creds">香港大學教育碩士（STEM，院長榮譽名單）。前任中學STE(A)M統籌。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI Education AI</h3>
+        <p>以人工智能工具賦能教育工作者和學生，實現更聰明的教與學。</p>
+      </div>
+      <div class="footer-col">
+        <h4>平台</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI工具</a></li>
+          <li><a href="about.html">關於我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI工具</h4>
+        <ul>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI Platform</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>新界葵涌</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 朗文致知教育科技有限公司 版權所有</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 首頁</a>
+    <a href="about.html">👤 關於我們</a>
+    <a href="courses.html">📚 課程</a>
+    <a href="ai-tools.html">🤖 AI工具</a>
+    <a href="showcase.html">🏆 作品</a>
+    <a href="contact.html">📧 聯繫我們</a>
+    <div class="lang-toggle">
+      <a href="../about.html">EN</a>
+      <a href="about.html" class="active">中</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+

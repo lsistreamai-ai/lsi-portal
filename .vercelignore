@@ -1,0 +1,6 @@
+*.pdf
+*.zip
+_ARCHIVED/
+Photos/
+node_modules/
+.DS_Store

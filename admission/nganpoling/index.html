@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.2-F.4 Admission | Po Leung Kuk Ngan Po Ling College 保良局顏寶鈴書院</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.7; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Header */
+    .header { background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%); color: white; padding: 3rem 1.5rem; }
+    .header-content { max-width: 1000px; margin: 0 auto; }
+    .school-logo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .school-logo img { height: 60px; }
+    .school-name h1 { font-size: 1.5rem; font-weight: 700; }
+    .school-name p { font-size: 1.125rem; opacity: 0.9; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-subtitle { font-size: 1.25rem; opacity: 0.8; }
+    
+    /* Content */
+    .content { padding: 3rem 1.5rem; }
+    
+    /* Info Cards */
+    .info-card { background: white; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .info-card h2 { color: #1e3a5f; font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .info-card h2 .icon { font-size: 1.5rem; }
+    
+    /* Schedule Table */
+    .schedule-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+    .schedule-table th, .schedule-table td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .schedule-table th { background: #f8fafc; font-weight: 600; color: #374151; }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table .bilingual { color: #64748b; font-size: 0.9rem; }
+    
+    /* Notice Box */
+    .notice-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.5rem 0; }
+    .notice-box p { margin: 0; font-size: 0.9rem; }
+    
+    /* Test Content */
+    .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .test-item { background: #f8fafc; border-radius: 0.75rem; padding: 1.5rem; }
+    .test-item h3 { font-size: 1rem; font-weight: 700; color: #1e3a5f; margin-bottom: 0.75rem; }
+    .test-item ul { list-style: none; padding: 0; }
+    .test-item li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+    .test-item li::before { content: "✓"; position: absolute; left: 0; color: #2563eb; font-weight: 700; }
+    
+    /* Apply Button */
+    .apply-section { text-align: center; padding: 2rem; background: #eff6ff; border-radius: 1rem; margin-top: 2rem; }
+    .apply-btn { display: inline-block; background: #2563eb; color: white; padding: 1rem 3rem; border-radius: 0.75rem; font-weight: 700; font-size: 1.125rem; text-decoration: none; transition: all 0.2s; }
+    .apply-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .apply-note { margin-top: 1rem; color: #64748b; font-size: 0.9rem; }
+    
+    /* Fee Info */
+    .fee-info { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.75rem; padding: 1.5rem; margin-top: 1.5rem; }
+    .fee-info h4 { color: #166534; font-weight: 700; margin-bottom: 0.75rem; }
+    .fee-info p { color: #15803d; font-size: 0.9rem; }
+    
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 1rem; }
+    .timeline-item { display: flex; gap: 1rem; }
+    .timeline-date { min-width: 140px; font-weight: 600; color: #2563eb; }
+    .timeline-item p { margin: 0; }
+    
+    /* Back Link */
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #2563eb; text-decoration: none; font-weight: 500; margin-bottom: 1rem; }
+    .back-link:hover { text-decoration: underline; }
+    
+    /* Footer */
+    .footer { background: #0f172a; color: white; padding: 2rem 1.5rem; margin-top: 3rem; }
+    .footer-content { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .footer h4 { font-weight: 600; margin-bottom: 0.75rem; }
+    .footer p, .footer a { color: #94a3b8; font-size: 0.9rem; }
+    .footer a { text-decoration: none; }
+    .footer a:hover { color: white; }
+    
+    @media (max-width: 768px) {
+      .header { padding: 2rem 1rem; }
+      .page-title { font-size: 1.5rem; }
+      .schedule-table { font-size: 0.85rem; }
+      .schedule-table th, .schedule-table td { padding: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="school-logo">
+        <div>
+          <h1>Po Leung Kuk Ngan Po Ling College</h1>
+          <p>保良局顏寶鈴書院</p>
+        </div>
+      </div>
+      <div class="page-title">F.2-F.4 Admission 2026-2027</div>
+      <div class="page-subtitle">中二至中四入學申請</div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="content">
+    <div class="container">
+      <a href="/admissions.html" class="back-link">← Back to Admissions Hub</a>
+      
+      <!-- Application Schedule -->
+      <div class="info-card">
+        <h2><span class="icon">📅</span> Application Schedule 申請日期</h2>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Level 年級</th>
+              <th>Application Period 申請日期</th>
+              <th>Test & Interview 入學試及面試</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Form 2 to Form 4</strong>
+                <div class="bilingual">中二至中四</div>
+              </td>
+              <td>
+                <strong>10/4/2026 (Fri) 09:00</strong>
+                <div class="bilingual">to</div>
+                <strong>10/5/2026 (Sun) 23:59</strong>
+              </td>
+              <td>
+                <strong>23/5/2026 (Saturday)</strong>
+                <div class="bilingual">23/5/2026 (六)</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="notice-box">
+          <p><strong>📧 Notification:</strong> Shortlisted candidates will be informed of the details of the admission test and interview via email on or before <strong>15/5/2026 (Fri)</strong>.</p>
+          <p>合適之申請人將於二零二六年五月十五日(星期五)或之前收到本校電郵通知入學試及面試之詳情。</p>
+        </div>
+      </div>
+
+      <!-- Admission Test -->
+      <div class="info-card">
+        <h2><span class="icon">📝</span> Admission Test 入學試</h2>
+        <div class="test-grid">
+          <div class="test-item">
+            <h3>🗣️ Chinese Applicants 華語學生</h3>
+            <ul>
+              <li>Chinese 中文</li>
+              <li>English 英文</li>
+              <li>Mathematics 數學</li>
+            </ul>
+          </div>
+          <div class="test-item">
+            <h3>🌍 Non-Chinese Speaking 非華語學生</h3>
+            <ul>
+              <li>Chinese as a Second Language 中國語文為第二語言</li>
+              <li>French 法文</li>
+              <li>English 英文</li>
+              <li>Mathematics 數學</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interview -->
+      <div class="info-card">
+        <h2><span class="icon">💬</span> Interview 面試</h2>
+        <div class="test-grid">
+          <div class="test-item">
+            <h3>Interview Content 面試內容</h3>
+            <ul>
+              <li>Language Skills 語文能力</li>
+              <li>General Knowledge 一般常識</li>
+              <li>Communication Skills 溝通技巧</li>
+              <li>Courtesy 禮儀</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Important Notice -->
+      <div class="info-card">
+        <h2><span class="icon">⚠️</span> Important Notice 重要通知</h2>
+        <div class="notice-box" style="background: #fee2e2; border-color: #ef4444;">
+          <p>If no further notification is received before <strong>10 July 2026 (Fri)</strong>, the application is deemed to be unsuccessful.</p>
+          <p>如申請人在二零二六年七月十日(星期五)前仍未收到錄取通知，其申請作落選論。</p>
+        </div>
+      </div>
+
+      <!-- Fee Remission -->
+      <div class="info-card">
+        <h2><span class="icon">💰</span> Fee Remission & Scholarship 學費減免及獎學金</h2>
+        <div class="fee-info">
+          <h4>Fee Remission Scheme 學費減免計劃</h4>
+          <p>The school has a 'Fee Remission Scheme' for needy students. Those needy students will be offered a full or half fee remission. Needy students, including those from families receiving Comprehensive Social Security Assistance or financial assistance provided by the Student Finance Office, as well as those not receiving such assistance but assessed through the school's school-based assessment method, could apply and be eligible for school fee remission.</p>
+          <p style="margin-top: 0.75rem;">本校設有「學費減免計劃」以協助有經濟困難的學生。符合資格的學生可獲全額或半額學費減免。</p>
+        </div>
+        <div class="fee-info" style="background: #fef3c7; border-color: #fbbf24;">
+          <h4 style="color: #92400e;">Scholarship 獎學金</h4>
+          <p style="color: #92400e;">'Scholarships' will also be offered to students who have demonstrated outstanding achievements or possess potential in the areas of academics, sports, music and other extra-curricular activities.</p>
+          <p style="margin-top: 0.75rem; color: #92400e;">學校亦設有「獎學金計劃」，以表揚在學術、體育、音樂及其他課外活動方面表現優異或具潛質的學生。</p>
+        </div>
+        <p style="margin-top: 1rem;"><a href="https://www.npl.edu.hk/en/site/view?name=2526+Scheme" target="_blank" style="color: #2563eb;">→ View Full Fee Remission & Scholarship Details</a></p>
+      </div>
+
+      <!-- Apply Now -->
+      <div class="apply-section">
+        <h3 style="margin-bottom: 1rem; color: #1e3a5f; font-size: 1.25rem;">Ready to Apply?</h3>
+        <a href="https://sas.hktedu.com/nplc/2638#front" target="_blank" class="apply-btn">
+          📲 Apply Online Now
+        </a>
+        <p class="apply-note">Application period: 10 April - 10 May 2026</p>
+      </div>
+
+      <!-- School Info -->
+      <div class="info-card" style="margin-top: 2rem;">
+        <h2><span class="icon">🏫</span> School Information 學校資訊</h2>
+        <div class="test-grid">
+          <div class="test-item">
+            <h3>Curriculum</h3>
+            <ul>
+              <li>Mainstream Curriculum (HKDSE)</li>
+              <li>International Baccalaureate (IBDP)</li>
+            </ul>
+          </div>
+          <div class="test-item">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="https://www.npl.edu.hk" target="_blank">www.npl.edu.hk</a></li>
+              <li>Email via school website</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <h4>Po Leung Kuk Ngan Po Ling College</h4>
+        <p>保良局顏寶鈴書院</p>
+        <p><a href="https://www.npl.edu.hk" target="_blank">www.npl.edu.hk</a></p>
+      </div>
+      <div>
+        <h4>Admissions</h4>
+        <p><a href="https://www.npl.edu.hk/en/site/view?name=F.1+Admission" target="_blank">F.1 Admission</a></p>
+        <p><a href="https://www.npl.edu.hk/en/site/view?name=F.2-F.4+Admission" target="_blank">F.2-F.4 Admission</a></p>
+      </div>
+      <div>
+        <h4>LSI Education AI</h4>
+        <p><a href="/">Home</a></p>
+        <p><a href="/admissions.html">Admissions Hub</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses | LSI Education AI</title>
+  <meta name="description" content="STEAM, DSE prep, and AI literacy courses for Hong Kong schools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    
+    /* Page Hero */
+    .page-hero {
+      padding: 8rem 1.5rem 5rem;
+      background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+    }
+    .page-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      font-size: 1.25rem;
+      color: #64748b;
+    }
+    
+    /* Section */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+    }
+    .section-desc {
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+    
+    /* Courses Grid */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .course-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: block;
+    }
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    }
+    .course-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .course-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .course-card:hover .course-image img {
+      transform: scale(1.05);
+    }
+    .course-content {
+      padding: 1.5rem;
+    }
+    .course-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .course-card h3 {
+      color: #1e3a5f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .course-card p {
+      color: #64748b;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    .course-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .courses-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .page-hero h1 { font-size: 2rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> Home</a>
+        <a href="about.html"><span class="icon">👤</span> About</a>
+        <a href="courses.html"><span class="icon">📚</span> Courses</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI Tools</a>
+        <a href="skills.html"><span class="icon">👨🏫</span> Resources</a>
+        <a href="showcase.html"><span class="icon">🏆</span> Showcase</a>
+        <a href="contact.html"><span class="icon">📧</span> Contact</a>
+        <div class="lang-toggle">
+          <a href="courses.html" class="active">EN</a>
+          <a href="cn/courses.html">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Courses</h1>
+      <p>Comprehensive programs designed to inspire creativity and prepare students for the future.</p>
+    </div>
+  </section>
+
+  <!-- All Courses -->
+  <section class="section">
+    <div class="container">
+      <div class="courses-grid">
+        <a href="ar-creation.html" class="course-card">
+          <div class="course-image">
+            <img src="images/arbookcover.jpg" alt="AR Creation">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">STEAM</span>
+            <h3>Augmented Reality Creation</h3>
+            <p>Create interactive AR stories and books. Perfect for creative writing meets technology.</p>
+            <div class="course-meta">
+              <span>📅 12 weeks</span>
+              <span>📊 Intermediate</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=80" alt="DSE Math">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">DSE Prep</span>
+            <h3>DSE Math & Science Boost</h3>
+            <p>Intensive exam preparation for S4-S6 students with AI-powered practice.</p>
+            <div class="course-meta">
+              <span>📅 Ongoing</span>
+              <span>📊 S4-S6</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80" alt="AI Teachers">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">AI Workshops</span>
+            <h3>AI for Teachers</h3>
+            <p>Learn to integrate AI tools into your classroom effectively and ethically.</p>
+            <div class="course-meta">
+              <span>📅 1-2 days</span>
+              <span>📊 All levels</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&fit=crop&q=80" alt="Coding">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">STEAM</span>
+            <h3>Creative Coding</h3>
+            <p>Learn programming through art, music, and interactive projects.</p>
+            <div class="course-meta">
+              <span>📅 8 weeks</span>
+              <span>📊 Beginners</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=80" alt="Robotics">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">STEAM</span>
+            <h3>Robotics & Engineering</h3>
+            <p>Build and program robots with hands-on projects and competitions.</p>
+            <div class="course-meta">
+              <span>📅 10 weeks</span>
+              <span>📊 P4-S3</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&auto=format&fit=crop&q=80" alt="Training">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">Professional</span>
+            <h3>Teacher Training Programs</h3>
+            <p>Professional development courses for educators at all levels.</p>
+            <div class="course-meta">
+              <span>📅 Flexible</span>
+              <span>📊 All levels</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80" alt="STEAM">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">STEAM</span>
+            <h3>Science Explorer</h3>
+            <p>Hands-on experiments and investigations for curious young scientists.</p>
+            <div class="course-meta">
+              <span>📅 8 weeks</span>
+              <span>📊 P3-P6</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&auto=format&fit=crop&q=80" alt="DSE English">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">DSE Prep</span>
+            <h3>DSE English Excellence</h3>
+            <p>Master reading, writing, and speaking for DSE English exam success.</p>
+            <div class="course-meta">
+              <span>📅 Ongoing</span>
+              <span>📊 S4-S6</span>
+            </div>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="course-card">
+          <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80" alt="Partnership">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">Custom</span>
+            <h3>School Partnership Program</h3>
+            <p>Custom-designed curriculum and training tailored to your school's needs.</p>
+            <div class="course-meta">
+              <span>📅 Flexible</span>
+              <span>📊 All levels</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI Education AI</h3>
+        <p>Empowering educators and students with AI-powered tools for smarter teaching and learning.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI Tools</a></li>
+          <li><a href="skills.html">Resources</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI Tools</h4>
+        <ul>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI Platform</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>Kwai Chung, N.T.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Language Services International (PET) Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👤 About</a>
+    <a href="courses.html">📚 Courses</a>
+    <a href="ai-tools.html">🤖 AI Tools</a>
+    <a href="skills.html">👨🏫 Resources</a>
+    <a href="https://games.lsistream.ai" target="_blank">🎮 Games</a>
+    <a href="contact.html">📧 Contact</a>
+    <div class="lang-toggle">
+      <a href="courses.html" class="active">EN</a>
+      <a href="cn/courses.html">中</a>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

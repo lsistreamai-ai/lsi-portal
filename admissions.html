@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HK School Admissions Assistant | LSI Education AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #1e3a5f; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
+    .nav-links a:hover { color: #1e3a5f; }
+    
+    /* Hero */
+    .hero { padding: 8rem 1.5rem 4rem; background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); text-align: center; color: white; }
+    .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+    .hero p { font-size: 1.125rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem; }
+    
+    /* Steps */
+    .steps-section { padding: 4rem 1.5rem; background: white; }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .step-card { text-align: center; padding: 2rem; }
+    .step-number { width: 48px; height: 48px; background: #2563eb; color: white; border-radius: 50%; font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .step-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; color: #1e3a5f; }
+    .step-card p { color: #64748b; font-size: 0.9rem; }
+    
+    /* Tabs */
+    .tabs-section { padding: 2rem 1.5rem; }
+    .tab-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .tab-btn { padding: 0.75rem 1.5rem; border: 2px solid #e2e8f0; background: white; border-radius: 100px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: #1e3a5f; color: white; border-color: #1e3a5f; }
+    .tab-content { display: none; background: white; border-radius: 1.5rem; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .tab-content.active { display: block; }
+    
+    /* Form */
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #374151; font-size: 0.875rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.875rem 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem; transition: all 0.2s; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    
+    /* School Cards */
+    .schools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .school-card { background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e2e8f0; transition: all 0.2s; cursor: pointer; }
+    .school-card:hover { border-color: #2563eb; box-shadow: 0 4px 20px rgba(37,99,235,0.1); }
+    .school-card.selected { border-color: #2563eb; background: #eff6ff; }
+    .school-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .school-name { font-weight: 700; color: #1e3a5f; font-size: 1rem; }
+    .school-name-cn { font-weight: 500; color: #64748b; font-size: 0.875rem; }
+    .school-badge { padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+    .badge-band1 { background: #fef3c7; color: #b45309; }
+    .badge-band2 { background: #dbeafe; color: #1d4ed8; }
+    .badge-band3 { background: #f1f5f9; color: #475569; }
+    .school-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: #64748b; flex-wrap: wrap; }
+    .school-meta span { display: flex; align-items: center; gap: 0.25rem; }
+    
+    /* Upload Zone */
+    .upload-zone { border: 2px dashed #cbd5e1; border-radius: 1rem; padding: 3rem; text-align: center; transition: all 0.2s; cursor: pointer; }
+    .upload-zone:hover { border-color: #2563eb; background: #f8fafc; }
+    .upload-zone.dragover { border-color: #2563eb; background: #eff6ff; }
+    .upload-icon { font-size: 3rem; margin-bottom: 1rem; }
+    
+    /* Button */
+    .btn { padding: 0.875rem 2rem; border-radius: 0.75rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+    .btn-primary { background: #2563eb; color: white; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary { background: #f1f5f9; color: #374151; }
+    .btn-secondary:hover { background: #e2e8f0; }
+    
+    /* Tracker */
+    .tracker-table { width: 100%; border-collapse: collapse; }
+    .tracker-table th, .tracker-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .tracker-table th { background: #f8fafc; font-weight: 600; }
+    .status-badge { padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+    .status-pending { background: #fef3c7; color: #b45309; }
+    .status-submitted { background: #dbeafe; color: #1d4ed8; }
+    .status-interview { background: #e0e7ff; color: #4338ca; }
+    .status-accepted { background: #d1fae5; color: #047857; }
+    
+    /* Footer */
+    footer { background: #0f172a; color: white; padding: 3rem 1.5rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #64748b; font-size: 0.875rem; }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 1.75rem; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="LSI" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>🏫 HK School Admissions Assistant</h1>
+      <p>Find the right school, fill applications automatically, and track your progress — all in one place.</p>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="steps-section">
+    <div class="container">
+      <h2 style="text-align: center; font-size: 1.75rem; color: #1e3a5f;">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Create Student Profile</h3>
+          <p>Enter student details once. We'll use it for all applications.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Find & Shortlist Schools</h3>
+          <p>Browse 500+ HK schools. Filter by location, band, medium, type.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Auto-Fill Applications</h3>
+          <p>Upload PDF forms. We pre-fill with student data.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Track Applications</h3>
+          <p>Deadlines, status, interviews — all organized in one dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tool -->
+  <section class="tabs-section">
+    <div class="container">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('profile')">👤 Student Profile</button>
+        <button class="tab-btn" onclick="showTab('schools')">🏫 Find Schools</button>
+        <button class="tab-btn" onclick="showTab('autofill')">📄 Auto-Fill Forms</button>
+        <button class="tab-btn" onclick="showTab('tracker')">📊 Track Applications</button>
+      </div>
+
+      <!-- Profile Tab -->
+      <div id="profile-tab" class="tab-content active">
+        <h2 style="margin-bottom: 1.5rem; color: #1e3a5f;">Student Information</h2>
+        <p style="color: #64748b; margin-bottom: 2rem;">Fill this once. We'll auto-populate all your school applications.</p>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Student Name (English) *</label>
+            <input type="text" id="nameEn" placeholder="CHAN Tai Man">
+          </div>
+          <div class="form-group">
+            <label>學生姓名 (中文) *</label>
+            <input type="text" id="nameCn" placeholder="陳大文">
+          </div>
+          <div class="form-group">
+            <label>Date of Birth *</label>
+            <input type="date" id="dob">
+          </div>
+          <div class="form-group">
+            <label>Gender *</label>
+            <select id="gender">
+              <option value="">Select</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Current School</label>
+            <input type="text" id="currentSchool" placeholder="e.g., Shenzhen Experimental School">
+          </div>
+          <div class="form-group">
+            <label>Current Grade</label>
+            <select id="currentGrade">
+              <option value="">Select</option>
+              <option value="P5">Primary 5</option>
+              <option value="P6">Primary 6</option>
+              <option value="S1">Secondary 1</option>
+              <option value="S2">Secondary 2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred District</label>
+            <select id="district">
+              <option value="">Any</option>
+              <option value="Kowloon City">Kowloon City</option>
+              <option value="Sham Shui Po">Sham Shui Po</option>
+              <option value="Yau Tsim Mong">Yau Tsim Mong</option>
+              <option value="Wong Tai Sin">Wong Tai Sin</option>
+              <option value="Eastern">Eastern (HK Island)</option>
+              <option value="Central & Western">Central & Western</option>
+              <option value="Sha Tin">Sha Tin (N.T.)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Medium of Instruction</label>
+            <select id="medium">
+              <option value="">Any</option>
+              <option value="English">English</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Bilingual">Bilingual</option>
+            </select>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <h3 style="margin-bottom: 1rem; color: #1e3a5f; font-size: 1rem;">Parent/Guardian Information</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Father's Name</label>
+              <input type="text" id="fatherName" placeholder="CHAN Siu Ming">
+            </div>
+            <div class="form-group">
+              <label>Father's Phone</label>
+              <input type="tel" id="fatherPhone" placeholder="+86 138 xxxx xxxx">
+            </div>
+            <div class="form-group">
+              <label>Mother's Name</label>
+              <input type="text" id="motherName" placeholder="LEE Mei Ling">
+            </div>
+            <div class="form-group">
+              <label>Mother's Phone</label>
+              <input type="tel" id="motherPhone" placeholder="+86 139 xxxx xxxx">
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label>Home Address (in HK, if any)</label>
+              <input type="text" id="address" placeholder="Room X, Floor Y, Building Z, Street, District">
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+          <button class="btn btn-primary" onclick="saveProfile()">💾 Save Profile</button>
+          <button class="btn btn-secondary" onclick="loadSampleData()">📋 Load Sample Data</button>
+        </div>
+      </div>
+
+      <!-- Schools Tab -->
+      <div id="schools-tab" class="tab-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <h2 style="color: #1e3a5f;">Hong Kong Secondary Schools</h2>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <select id="filterBand" onchange="filterSchools()" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
+              <option value="">All Bands</option>
+              <option value="Band 1">Band 1</option>
+              <option value="Band 2">Band 2</option>
+              <option value="Band 3">Band 3</option>
+            </select>
+            <select id="filterMedium" onchange="filterSchools()" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
+              <option value="">All Mediums</option>
+              <option value="English">English</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Bilingual">Bilingual</option>
+            </select>
+            <select id="filterDistrict" onchange="filterSchools()" style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
+              <option value="">All Districts</option>
+              <option value="Kowloon City">Kowloon City</option>
+              <option value="Sham Shui Po">Sham Shui Po</option>
+              <option value="Yau Tsim Mong">Yau Tsim Mong</option>
+              <option value="Wong Tai Sin">Wong Tai Sin</option>
+              <option value="Eastern">Eastern</option>
+            </select>
+          </div>
+        </div>
+        
+        <p style="color: #64748b; margin-bottom: 1.5rem;">Click to select schools for your shortlist. Selected schools will appear in your application tracker.</p>
+        
+        <div id="schoolsGrid" class="schools-grid">
+          <!-- Schools loaded here -->
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <button class="btn btn-primary" onclick="addToTracker()">➕ Add Selected to Tracker (<span id="selectedCount">0</span> selected)</button>
+        </div>
+      </div>
+
+      <!-- Auto-Fill Tab -->
+      <div id="autofill-tab" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: #1e3a5f;">Auto-Fill Application Forms</h2>
+        <p style="color: #64748b; margin-bottom: 2rem;">Upload school application PDFs. We'll pre-fill them with your saved profile data.</p>
+        
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+          <div class="upload-icon">📄</div>
+          <h3 style="margin-bottom: 0.5rem;">Click or Drag PDF Files Here</h3>
+          <p style="color: #64748b; font-size: 0.9rem;">Supports: School application forms, enrollment forms, etc.</p>
+          <input type="file" id="fileInput" accept=".pdf" multiple style="display: none;" onchange="handleFiles(this.files)">
+        </div>
+        
+        <div id="uploadedFiles" style="margin-top: 2rem;"></div>
+        
+        <div style="margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 1rem;">
+          <h3 style="margin-bottom: 1rem; color: #1e3a5f; font-size: 1rem;">🤖 Auto-Fill Preview</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">The following fields will be auto-filled from your profile:</p>
+          <div id="fieldPreview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; font-size: 0.85rem;">
+            <div><strong>學生姓名:</strong> <span id="previewNameCn">-</span></div>
+            <div><strong>Student Name:</strong> <span id="previewNameEn">-</span></div>
+            <div><strong>出生日期:</strong> <span id="previewDob">-</span></div>
+            <div><strong>性別:</strong> <span id="previewGender">-</span></div>
+            <div><strong>地址:</strong> <span id="previewAddress">-</span></div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <button class="btn btn-primary" onclick="generateFilledPDF()">⚡ Generate Filled PDF</button>
+          <button class="btn btn-secondary" onclick="downloadAllForms()">📥 Download All Forms</button>
+        </div>
+      </div>
+
+      <!-- Tracker Tab -->
+      <div id="tracker-tab" class="tab-content">
+        <h2 style="margin-bottom: 1rem; color: #1e3a5f;">Application Tracker</h2>
+        <p style="color: #64748b; margin-bottom: 2rem;">Track deadlines, submission status, and interview schedules.</p>
+        
+        <div style="overflow-x: auto;">
+          <table class="tracker-table">
+            <thead>
+              <tr>
+                <th>School</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="trackerBody">
+              <tr>
+                <td colspan="5" style="text-align: center; padding: 3rem; color: #94a3b8;">
+                  No schools added yet. Go to "Find Schools" tab to select schools.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3 style="margin-bottom: 0.5rem;">LSI Education AI</h3>
+        <p style="color: #94a3b8;">HK School Admissions Assistant — Find schools, auto-fill forms, track applications.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.5rem;">Contact</h4>
+        <p style="color: #94a3b8;">info@lsistream.ai<br>+852 9828 2172</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.5rem;">Links</h4>
+        <p style="color: #94a3b8;"><a href="index.html" style="color: #94a3b8;">Home</a><br><a href="skills.html" style="color: #94a3b8;">Teacher Resources</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Language Services International (PET) Ltd.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sample School Data
+    const schools = [
+      { id: 1, name: "La Salle College", nameCn: "喇沙書院", band: "Band 1", medium: "English", district: "Kowloon City", type: "DSS", religion: "Catholic" },
+      { id: 2, name: "Wah Yan College (Kowloon)", nameCn: "華仁書院（九龍）", band: "Band 1", medium: "English", district: "Yau Tsim Mong", type: "Aided", religion: "Catholic" },
+      { id: 3, name: "Heep Yunn School", nameCn: "協恩中學", band: "Band 1", medium: "English", district: "Kowloon City", type: "Aided", religion: "Christian" },
+      { id: 4, name: "Queen Elizabeth School", nameCn: "伊利沙伯中學", band: "Band 1", medium: "English", district: "Yau Tsim Mong", type: "Government", religion: "None" },
+      { id: 5, name: "St. Paul's Co-educational College", nameCn: "聖保羅男女中學", band: "Band 1", medium: "English", district: "Central & Western", type: "DSS", religion: "Christian" },
+      { id: 6, name: "Maryknoll Fathers' School", nameCn: "瑪利諾神父教會學校", band: "Band 1", medium: "Bilingual", district: "Sham Shui Po", type: "Aided", religion: "Catholic" },
+      { id: 7, name: "Pui Ching Middle School", nameCn: "培正中學", band: "Band 1", medium: "Chinese", district: "Kowloon City", type: "Aided", religion: "Christian" },
+      { id: 8, name: "Diocesan Girls' School", nameCn: "拔萃女書院", band: "Band 1", medium: "English", district: "Yau Tsim Mong", type: "DSS", religion: "Christian" },
+      { id: 9, name: "St. Mary's Canossian College", nameCn: "瑪利曼中學", band: "Band 1", medium: "English", district: "Kowloon City", type: "Aided", religion: "Catholic" },
+      { id: 10, name: "Baptist Lui Ming Choi Secondary School", nameCn: "浸信會呂明才中學", band: "Band 2", medium: "Bilingual", district: "Wong Tai Sin", type: "Aided", religion: "Christian" },
+      { id: 11, name: "Carmel Alison Lam Foundation Secondary School", nameCn: "迦密愛禮信中學", band: "Band 2", medium: "English", district: "Eastern", type: "Aided", religion: "Christian" },
+      { id: 12, name: "HKUGA College", nameCn: "港大同學會書院", band: "Band 1", medium: "English", district: "Eastern", type: "DSS", religion: "None" },
+      { id: 13, name: "Po Leung Kuk Ngan Po Ling College", nameCn: "保良局顏寶鈴書院", band: "Band 1", medium: "English", district: "Kowloon City", type: "DSS", religion: "None" },
+    ];
+
+    let selectedSchools = [];
+    let trackedSchools = [];
+
+    // Initialize
+    function init() {
+      renderSchools(schools);
+      loadProfile();
+      loadTracker();
+    }
+
+    // Render Schools
+    function renderSchools(list) {
+      const grid = document.getElementById('schoolsGrid');
+      grid.innerHTML = list.map(s => `
+        <div class="school-card ${selectedSchools.includes(s.id) ? 'selected' : ''}" onclick="toggleSchool(${s.id})">
+          <div class="school-header">
+            <div>
+              <div class="school-name">${s.name}</div>
+              <div class="school-name-cn">${s.nameCn}</div>
+            </div>
+            <span class="school-badge ${s.band === 'Band 1' ? 'badge-band1' : s.band === 'Band 2' ? 'badge-band2' : 'badge-band3'}">${s.band}</span>
+          </div>
+          <div class="school-meta">
+            <span>📍 ${s.district}</span>
+            <span>🗣️ ${s.medium}</span>
+            <span>🏛️ ${s.type}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter Schools
+    function filterSchools() {
+      const band = document.getElementById('filterBand').value;
+      const medium = document.getElementById('filterMedium').value;
+      const district = document.getElementById('filterDistrict').value;
+      
+      let filtered = schools;
+      if (band) filtered = filtered.filter(s => s.band === band);
+      if (medium) filtered = filtered.filter(s => s.medium === medium);
+      if (district) filtered = filtered.filter(s => s.district === district);
+      
+      renderSchools(filtered);
+    }
+
+    // Toggle School Selection
+    function toggleSchool(id) {
+      const idx = selectedSchools.indexOf(id);
+      if (idx === -1) {
+        selectedSchools.push(id);
+      } else {
+        selectedSchools.splice(idx, 1);
+      }
+      document.getElementById('selectedCount').textContent = selectedSchools.length;
+      renderSchools(schools.filter(s => 
+        (!document.getElementById('filterBand').value || s.band === document.getElementById('filterBand').value) &&
+        (!document.getElementById('filterMedium').value || s.medium === document.getElementById('filterMedium').value) &&
+        (!document.getElementById('filterDistrict').value || s.district === document.getElementById('filterDistrict').value)
+      ));
+    }
+
+    // Add to Tracker
+    function addToTracker() {
+      if (selectedSchools.length === 0) {
+        alert('Please select at least one school');
+        return;
+      }
+      
+      selectedSchools.forEach(id => {
+        if (!trackedSchools.find(t => t.id === id)) {
+          const school = schools.find(s => s.id === id);
+          trackedSchools.push({
+            ...school,
+            deadline: '',
+            status: 'pending',
+            notes: ''
+          });
+        }
+      });
+      
+      localStorage.setItem('lsitracker', JSON.stringify(trackedSchools));
+      renderTracker();
+      selectedSchools = [];
+      document.getElementById('selectedCount').textContent = 0;
+      renderSchools(schools);
+    }
+
+    // Render Tracker
+    function renderTracker() {
+      const tbody = document.getElementById('trackerBody');
+      if (trackedSchools.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 3rem; color: #94a3b8;">No schools added yet. Go to "Find Schools" tab to select schools.</td></tr>';
+        return;
+      }
+      
+      tbody.innerHTML = trackedSchools.map(t => `
+        <tr>
+          <td><strong>${t.name}</strong><br><span style="color: #64748b; font-size: 0.85rem;">${t.nameCn}</span></td>
+          <td><input type="date" value="${t.deadline}" onchange="updateTracker(${t.id}, 'deadline', this.value)" style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;"></td>
+          <td>
+            <select onchange="updateTracker(${t.id}, 'status', this.value)" class="status-badge status-${t.status}">
+              <option value="pending" ${t.status === 'pending' ? 'selected' : ''}>Pending</option>
+              <option value="submitted" ${t.status === 'submitted' ? 'selected' : ''}>Submitted</option>
+              <option value="interview" ${t.status === 'interview' ? 'selected' : ''}>Interview</option>
+              <option value="accepted" ${t.status === 'accepted' ? 'selected' : ''}>Accepted</option>
+            </select>
+          </td>
+          <td><input type="text" value="${t.notes}" placeholder="Add notes..." onchange="updateTracker(${t.id}, 'notes', this.value)" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;"></td>
+          <td><button onclick="removeFromTracker(${t.id})" style="color: #ef4444; background: none; border: none; cursor: pointer;">Remove</button></td>
+        </tr>
+      `).join('');
+    }
+
+    // Update Tracker
+    function updateTracker(id, field, value) {
+      const item = trackedSchools.find(t => t.id === id);
+      if (item) {
+        item[field] = value;
+        localStorage.setItem('lsitracker', JSON.stringify(trackedSchools));
+        renderTracker();
+      }
+    }
+
+    // Remove from Tracker
+    function removeFromTracker(id) {
+      trackedSchools = trackedSchools.filter(t => t.id !== id);
+      localStorage.setItem('lsitracker', JSON.stringify(trackedSchools));
+      renderTracker();
+    }
+
+    // Load Tracker
+    function loadTracker() {
+      const saved = localStorage.getItem('lsitracker');
+      if (saved) {
+        trackedSchools = JSON.parse(saved);
+        renderTracker();
+      }
+    }
+
+    // Show Tab
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab + '-tab').classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Save Profile
+    function saveProfile() {
+      const profile = {
+        nameEn: document.getElementById('nameEn').value,
+        nameCn: document.getElementById('nameCn').value,
+        dob: document.getElementById('dob').value,
+        gender: document.getElementById('gender').value,
+        currentSchool: document.getElementById('currentSchool').value,
+        currentGrade: document.getElementById('currentGrade').value,
+        district: document.getElementById('district').value,
+        medium: document.getElementById('medium').value,
+        fatherName: document.getElementById('fatherName').value,
+        fatherPhone: document.getElementById('fatherPhone').value,
+        motherName: document.getElementById('motherName').value,
+        motherPhone: document.getElementById('motherPhone').value,
+        address: document.getElementById('address').value
+      };
+      localStorage.setItem('lsiprofile', JSON.stringify(profile));
+      updatePreview();
+      alert('Profile saved!');
+    }
+
+    // Load Profile
+    function loadProfile() {
+      const saved = localStorage.getItem('lsiprofile');
+      if (saved) {
+        const p = JSON.parse(saved);
+        Object.keys(p).forEach(key => {
+          const el = document.getElementById(key);
+          if (el) el.value = p[key];
+        });
+        updatePreview();
+      }
+    }
+
+    // Update Preview
+    function updatePreview() {
+      document.getElementById('previewNameEn').textContent = document.getElementById('nameEn').value || '-';
+      document.getElementById('previewNameCn').textContent = document.getElementById('nameCn').value || '-';
+      document.getElementById('previewDob').textContent = document.getElementById('dob').value || '-';
+      document.getElementById('previewGender').textContent = document.getElementById('gender').value === 'M' ? '男 Male' : document.getElementById('gender').value === 'F' ? '女 Female' : '-';
+      document.getElementById('previewAddress').textContent = document.getElementById('address').value || '-';
+    }
+
+    // Load Sample Data
+    function loadSampleData() {
+      document.getElementById('nameEn').value = 'WONG Siu Ming';
+      document.getElementById('nameCn').value = '黃小明';
+      document.getElementById('dob').value = '2012-05-15';
+      document.getElementById('gender').value = 'M';
+      document.getElementById('currentSchool').value = 'Shenzhen Experimental School';
+      document.getElementById('currentGrade').value = 'P6';
+      document.getElementById('fatherName').value = 'WONG Chi Wai';
+      document.getElementById('fatherPhone').value = '+86 138 8888 8888';
+      document.getElementById('motherName').value = 'LEE Mei Ling';
+      document.getElementById('motherPhone').value = '+86 139 9999 9999';
+      document.getElementById('address').value = 'Room 1205, Tower A, Happy Estate, Kowloon City';
+      updatePreview();
+    }
+
+    // Handle File Upload
+    function handleFiles(files) {
+      const container = document.getElementById('uploadedFiles');
+      container.innerHTML = '';
+      
+      Array.from(files).forEach((file, idx) => {
+        container.innerHTML += `
+          <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #f8fafc; border-radius: 0.75rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 2rem;">📄</span>
+            <div style="flex: 1;">
+              <div style="font-weight: 600;">${file.name}</div>
+              <div style="color: #64748b; font-size: 0.85rem;">${(file.size / 1024).toFixed(1)} KB</div>
+            </div>
+            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Auto-Fill</button>
+          </div>
+        `;
+      });
+    }
+
+    // Drag & Drop
+    const uploadZone = document.getElementById('uploadZone');
+    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+    uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('dragover'); });
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.classList.remove('dragover');
+      handleFiles(e.dataTransfer.files);
+    });
+
+    // Generate Filled PDF (demo)
+    function generateFilledPDF() {
+      alert('🚧 Feature coming soon!\n\nIn the full version, this will:\n1. Read your saved profile\n2. Map fields to PDF form fields\n3. Generate a pre-filled PDF ready for Adobe Reader\n\nFor now, download the blank form and fill manually.');
+    }
+
+    function downloadAllForms() {
+      alert('🚧 In development - will download all uploaded forms with auto-filled data.');
+    }
+
+    // Init
+    init();
+  </script>
+</body>
+</html>

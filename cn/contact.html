@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡我們 | LSI 教育智能</title>
+  <meta name="description" content="聯絡LSI了解香港AI教育解決方案。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #1e3a5f; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
+    .nav-links a:hover { color: #1e3a5f; }
+    .lang-toggle { display: flex; background: #f1f5f9; border-radius: 100px; overflow: hidden; }
+    .lang-toggle a { padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; font-size: 0.875rem; color: #64748b; }
+    .lang-toggle a.active { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; }
+    .page-hero { padding: 8rem 1.5rem 4rem; background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); }
+    .page-hero h1 { font-size: 3rem; font-weight: 800; color: #1e3a5f; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.25rem; color: #64748b; }
+    .contact-section { padding: 5rem 1.5rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .form-title { font-size: 1.5rem; font-weight: 700; color: #1e3a5f; margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-weight: 500; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; border: 1px solid #e2e8f0; border-radius: 0.75rem; font-size: 1rem; font-family: inherit; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #3b82f6; }
+    .form-group textarea { min-height: 150px; resize: vertical; }
+    .submit-btn { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; padding: 1rem 2rem; border: none; border-radius: 100px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-card { background: #f8fafc; padding: 2rem; border-radius: 1rem; }
+    .info-card h3 { color: #1e3a5f; font-weight: 600; margin-bottom: 0.75rem; }
+    .info-card p { color: #64748b; }
+    .info-card a { color: #3b82f6; text-decoration: none; }
+    .hours-table { width: 100%; font-size: 0.875rem; }
+    .hours-table td { padding: 0.5rem 0; color: #64748b; }
+    .hours-table td:last-child { text-align: right; }
+    .map-card { margin-top: 3rem; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .map-image { height: 300px; overflow: hidden; }
+    .map-image img { width: 100%; height: 100%; object-fit: cover; }
+    .map-address { padding: 2rem; background: #f8fafc; }
+    .map-address p { color: #64748b; line-height: 1.8; }
+    footer { background: #0f172a; color: white; padding: 4rem 1.5rem 2rem; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+    .footer-brand h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #64748b; font-size: 0.875rem; }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: white; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 40; flex-direction: column; gap: 1.5rem; }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; font-size: 1.125rem; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0; }
+    .mobile-menu .lang-toggle { width: fit-content; margin-top: 1rem; }
+    @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .mobile-toggle { display: block; } .page-hero h1 { font-size: 2rem; } .footer-grid { grid-template-columns: 1fr; text-align: center; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> 首頁</a>
+        <a href="about.html"><span class="icon">👤</span> 關於我們</a>
+        <a href="courses.html"><span class="icon">📚</span> 課程</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI工具</a>
+        <a href="showcase.html"><span class="icon">🏆</span> 作品</a>
+        <a href="contact.html" class="active"><span class="icon">📧</span> 聯繫我們</a>
+        <div class="lang-toggle">
+          <a href="../contact.html">EN</a>
+          <a href="contact.html" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 首頁</a>
+    <a href="about.html">👤 關於我們</a>
+    <a href="courses.html">📚 課程</a>
+    <a href="ai-tools.html">🤖 AI工具</a>
+    <a href="showcase.html">🏆 作品</a>
+    <a href="contact.html">📧 聯繫我們</a>
+    <div class="lang-toggle">
+      <a href="../contact.html">EN</a>
+      <a href="contact.html" class="active">中</a>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>聯絡我們</h1>
+      <p>對我們的AI工具或課程有疑問？歡迎聯絡我們。</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-form">
+          <h2 class="form-title">發送訊息</h2>
+          <form id="contactForm">
+            <div class="form-group"><label for="name">姓名 *</label><input type="text" id="name" name="name" required placeholder="您的全名"></div>
+            <div class="form-group"><label for="email">電郵 *</label><input type="email" id="email" name="email" required placeholder="your@email.com"></div>
+            <div class="form-group"><label for="school">學校/機構</label><input type="text" id="school" name="school" placeholder="您的學校或公司"></div>
+            <div class="form-group"><label for="interest">我有興趣了解...</label>
+              <select id="interest" name="interest">
+                <option value="">請選擇</option>
+                <option value="platform">LSI AI平台</option>
+                <option value="cypress">Cypress學生伴讀</option>
+                <option value="vispace">Vispace元宇宙學習</option>
+                <option value="courses">課程及培訓</option>
+                <option value="partnership">合作機會</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="message">訊息 *</label><textarea id="message" name="message" required placeholder="我們可以如何幫助您？"></textarea></div>
+            <div id="formStatus" style="margin-bottom: 1rem; display: none;"></div>
+            <button type="submit" class="submit-btn" id="submitBtn">發送訊息 →</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <div class="info-card">
+            <h3>📧 電郵</h3>
+            <p><a href="mailto:info@lsistream.ai">info@lsistream.ai</a></p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">我們通常在24小時內回覆。</p>
+          </div>
+          <div class="info-card">
+            <h3>📞 電話/WhatsApp</h3>
+            <p><a href="tel:+85298282172">+852 9828 2172</a></p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;"><a href="https://wa.me/85298282172" target="_blank">WhatsApp聯絡我們 →</a></p>
+          </div>
+          <div class="info-card">
+            <h3>🕐 辦公時間</h3>
+            <table class="hours-table">
+              <tr><td>星期一至五</td><td>上午9時 - 下午6時</td></tr>
+              <tr><td>星期六</td><td>預約</td></tr>
+              <tr><td>星期日及公眾假期</td><td>休息</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="map-card">
+        <div class="map-image"><img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=1200&auto=format&fit=crop&q=80" alt="Office Location"></div>
+        <div class="map-address">
+          <p><strong style="color: #1e3a5f;">LSI辦公室地址</strong><br>新界葵涌和宜合道9號<br>盈翠山莊地下21號舖及1樓1號舖</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI 教育智能</h3><p>以AI驅動的工具賦能教育工作者和學生，讓教學更智能。</p></div>
+      <div class="footer-col"><h4>平台</h4><ul><li><a href="ai-tools.html">AI工具</a></li><li><a href="courses.html">課程</a></li><li><a href="about.html">關於我們</a></li></ul></div>
+      <div class="footer-col"><h4>AI工具</h4><ul><li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI平台</a></li><li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li><li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li></ul></div>
+      <div class="footer-col"><h4>聯絡我們</h4><ul><li>info@lsistream.ai</li><li>+852 9828 2172</li><li>葵涌</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 語言服務國際(教得)有限公司 版權所有</p></div>
+  </footer>
+
+  <script>
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const formStatus = document.getElementById('formStatus');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '發送中...';
+      formStatus.style.display = 'block';
+      formStatus.innerHTML = '<span style="color: #3b82f6;">發送您的訊息...</span>';
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        school: document.getElementById('school').value,
+        interest: document.getElementById('interest').value,
+        message: document.getElementById('message').value
+      };
+      
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          formStatus.innerHTML = '<span style="color: #10b981; font-weight: 600;">✓ 訊息已成功發送！我們會盡快回覆您。</span>';
+          document.getElementById('contactForm').reset();
+        } else {
+          formStatus.innerHTML = '<span style="color: #ef4444;">錯誤: ' + (result.error || '發送失敗') + '</span>';
+        }
+      } catch (error) {
+        formStatus.innerHTML = '<span style="color: #ef4444;">無法連接伺服器。請直接電郵至 info@lsistream.ai</span>';
+      }
+      
+      submitBtn.disabled = false;
+      submitBtn.textContent = '發送訊息 →';
+    });
+  </script>
+</body>
+</html>

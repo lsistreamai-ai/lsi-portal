@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LSI課程 | STEAM、DSE及AI教育</title>
+  <meta name="description" content="香港學校STEAM、DSE備考及AI素養課程。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #334155; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .nav-links a .icon { font-size: 1rem; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 8rem 1.5rem 4rem;
+      background: rgba(240, 249, 255, 0.3);
+    }
+    .hero-content { text-align: center; max-width: 700px; margin: 0 auto; }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: #64748b;
+      line-height: 1.7;
+    }
+    
+    /* Courses Grid */
+    .courses-section {
+      padding: 4rem 1.5rem 6rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+    }
+    .section-header p {
+      color: #64748b;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    /* Course Card */
+    .course-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+    .course-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .course-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .course-card:hover .course-image img {
+      transform: scale(1.05);
+    }
+    .course-content {
+      padding: 1.5rem;
+    }
+    .course-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+    .course-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+    }
+    .course-content p {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .course-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .course-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background: white;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn 0.3s ease;
+      position: relative;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      min-width: 44px;
+      min-height: 44px;
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: all 0.2s;
+      z-index: 10;
+      color: #1e3a5f;
+      line-height: 1;
+    }
+    .modal-close-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+    .modal-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .modal-content {
+      padding: 2rem;
+    }
+    .modal-badge {
+      display: inline-block;
+      padding: 0.375rem 1rem;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .modal-description {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .modal-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #f8fafc;
+      border-radius: 10px;
+    }
+    .detail-icon {
+      font-size: 1.25rem;
+    }
+    .detail-text {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .detail-text strong {
+      display: block;
+      font-weight: 600;
+      color: #1e3a5f;
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .modal {
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .modal-overlay {
+        padding: 0;
+        align-items: stretch;
+      }
+      .modal-image {
+        height: 180px;
+      }
+      .modal-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> 首頁</a>
+        <a href="about.html"><span class="icon">👤</span> 關於我們</a>
+        <a href="courses.html" class="active"><span class="icon">📚</span> 課程</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI工具</a>
+        <a href="showcase.html"><span class="icon">🏆</span> 作品</a>
+        <a href="contact.html"><span class="icon">📧</span> 聯繫我們</a>
+        <div class="lang-toggle">
+          <a href="../courses.html">EN</a>
+          <a href="courses.html" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 首頁</a>
+    <a href="about.html">👤 關於我們</a>
+    <a href="courses.html">📚 課程</a>
+    <a href="ai-tools.html">🤖 AI工具</a>
+    <a href="showcase.html">🏆 作品</a>
+    <a href="contact.html">📧 聯繫我們</a>
+    <div class="lang-toggle">
+      <a href="../courses.html">EN</a>
+      <a href="courses.html" class="active">中</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>動手學習，迎接未來</h1>
+      <p>STEAM課程、DSE備考及AI教育，啟發創意，裝備學生迎接明天。</p>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section class="courses-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>我們的課程</h2>
+        <p>點擊任何課程了解更多</p>
+      </div>
+      
+      <div class="courses-grid">
+        <!-- AR Adventure Class -->
+        <div class="course-card" onclick="openModal('ar-adventure')">
+          <div class="course-image">
+            <img src="../images/ar-adventure.jpg" alt="AR探險班">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">AR/VR</span>
+            <h3>AR探險班</h3>
+            <p>體驗擴增實境學習！讓歷史活現眼前，以3D探索科學。</p>
+            <div class="course-meta">
+              <span>📅 8堂</span>
+              <span>📊 小學及中學</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AI Discovery Lab -->
+        <div class="course-card" onclick="openModal('ai-discovery')">
+          <div class="course-image">
+            <img src="../images/ai-discovery.jpg" alt="AI探索實驗室">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">AI與科技</span>
+            <h3>AI探索實驗室</h3>
+            <p>了解AI運作原理！建立聊天機械人、創作AI藝術，掌握塑造未來的科技。</p>
+            <div class="course-meta">
+              <span>📅 10堂</span>
+              <span>📊 小學及中學</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Digital Creativity Studio -->
+        <div class="course-card" onclick="openModal('digital-creativity')">
+          <div class="course-image">
+            <img src="../images/digitalart.jpg" alt="數碼創意工作室">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">創意</span>
+            <h3>數碼創意工作室</h3>
+            <p>創作精彩的數碼藝術！專業級插畫、設計及相片編輯技巧。</p>
+            <div class="course-meta">
+              <span>📅 8堂</span>
+              <span>📊 小學及中學</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 3D Design Workshop -->
+        <div class="course-card" onclick="openModal('3d-design')">
+          <div class="course-image">
+            <img src="../images/3d-design.jpg" alt="3D設計工作坊">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">3D設計</span>
+            <h3>3D設計工作坊</h3>
+            <p>建立自己的3D模型！設計角色、創作虛擬物件，將創意化為現實。</p>
+            <div class="course-meta">
+              <span>📅 10堂</span>
+              <span>📊 小學及中學</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- VR World Creator -->
+        <div class="course-card" onclick="openModal('vr-world')">
+          <div class="course-image">
+            <img src="../images/vr-world.jpg" alt="VR世界創建者">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">VR/元宇宙</span>
+            <h3>VR世界創建者</h3>
+            <p>建立自己的虛擬世界！設計沉浸式體驗，學習VR遊戲設計。</p>
+            <div class="course-meta">
+              <span>📅 10堂</span>
+              <span>📊 小學及中學</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- DSE Excellence -->
+        <div class="course-card" onclick="openModal('dse-excellence')">
+          <div class="course-image">
+            <img src="../images/dse-class.jpg" alt="DSE精英課程">
+          </div>
+          <div class="course-content">
+            <span class="course-badge">DSE備考</span>
+            <h3>DSE精英課程</h3>
+            <p>全面DSE備考。掌握考試技巧、練習歷屆試題，提升成績。</p>
+            <div class="course-meta">
+              <span>📅 8堂</span>
+              <span>📊 中學</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeModal()">×</button>
+      <img class="modal-image" id="modalImage" src="" alt="">
+      <div class="modal-content">
+        <span class="modal-badge" id="modalBadge"></span>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-details">
+          <div class="detail-item">
+            <span class="detail-icon">📅</span>
+            <div class="detail-text">
+              <strong>課程長度</strong>
+              <span id="modalDuration"></span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">📊</span>
+            <div class="detail-text">
+              <strong>程度</strong>
+              <span id="modalLevel"></span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">👥</span>
+            <div class="detail-text">
+              <strong>班級人數</strong>
+              <span id="modalSize"></span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <span class="detail-icon">📍</span>
+            <div class="detail-text">
+              <strong>上課模式</strong>
+              <span id="modalMode"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI</h3>
+        <p>以智能工具賦能教育工作者和學生，實現更聰明的教與學。</p>
+      </div>
+      <div class="footer-col">
+        <h4>平台</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI平台</a></li>
+          <li><a href="about.html">關於我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI平台</h4>
+        <ul>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI平台</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯繫我們</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>葵涌，新界</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Language Services International (PET) Ltd. 版權所有。</p>
+    </div>
+  </footer>
+
+
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+    
+    // Course data
+    const courses = {
+      'ar-adventure': {
+        title: 'AR探險班',
+        badge: 'AR/VR',
+        image: 'images/ar-adventure.jpg',
+        description: '體驗前所未有的擴增實境學習！學生將探索活現眼前的歷史、進行虛擬科學實驗，與3D模型互動。這個沉浸式課程讓抽象概念變得具體有趣。',
+        duration: '8堂',
+        level: '初級 – 小四至小六、中一至中三',
+        size: '6-12人',
+        mode: '面授'
+      },
+      'ai-discovery': {
+        title: 'AI探索實驗室',
+        badge: 'AI與科技',
+        image: 'images/ai-discovery.jpg',
+        description: '深入人工智能世界！學生將建立自己的聊天機械人、創作AI藝術、學習機器學習運作原理，了解AI道德。適合想了解塑造未來科技的好奇心。',
+        duration: '10堂',
+        level: '中級 – 小五至小六、中一至中四',
+        size: '8-15人',
+        mode: '混合'
+      },
+      'digital-creativity': {
+        title: '數碼創意工作室',
+        badge: '創意',
+        image: 'images/digitalart.jpg',
+        description: '以數碼藝術釋放創意潛能！學習專業插畫技巧、相片編輯、平面設計原則，使用行業標準工具建立出色的數碼藝術作品集。',
+        duration: '8堂',
+        level: '初級 – 小三至小六、中一至中二',
+        size: '8-12人',
+        mode: '面授'
+      },
+      '3d-design': {
+        title: '3D設計工作坊',
+        badge: '3D設計',
+        image: 'images/3d-design.jpg',
+        description: '將想像化為3D實物！學習角色建模、產品設計、虛擬物件創作。學生將使用專業3D軟件，更可3D打印最佳作品。',
+        duration: '10堂',
+        level: '中級 – 小五至小六、中一至中四',
+        size: '8-12人',
+        mode: '面授'
+      },
+      'vr-world': {
+        title: 'VR世界創建者',
+        badge: 'VR/元宇宙',
+        image: 'images/vr-world.jpg',
+        description: '踏入未來，建立自己的虛擬世界！設計沉浸式VR體驗，學習遊戲設計基礎，創作可供他人探索的互動環境。學生將使用VR頭戴式裝置並發布作品。',
+        duration: '10堂',
+        level: '高級 – 中二至中六',
+        size: '6-10人',
+        mode: '面授'
+      },
+      'dse-excellence': {
+        title: 'DSE精英課程',
+        badge: 'DSE備考',
+        image: 'images/dse-class.jpg',
+        description: '由經驗豐富的教育工作者設計的全面DSE備考課程。掌握考試技巧、大量練習歷屆試題、制定有效學習策略，增強DSE成功信心。涵蓋核心科目，提供個人化指導。',
+        duration: '8堂',
+        level: '中四至中六',
+        size: '4-8人',
+        mode: '混合'
+      }
+    };
+
+    function openModal(courseId) {
+      const course = courses[courseId];
+      if (!course) return;
+      
+      document.getElementById('modalImage').src = course.image;
+      document.getElementById('modalBadge').textContent = course.badge;
+      document.getElementById('modalTitle').textContent = course.title;
+      document.getElementById('modalDescription').textContent = course.description;
+      document.getElementById('modalDuration').textContent = course.duration;
+      document.getElementById('modalLevel').textContent = course.level;
+      document.getElementById('modalSize').textContent = course.size;
+      document.getElementById('modalMode').textContent = course.mode;
+      
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // 關閉 on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>

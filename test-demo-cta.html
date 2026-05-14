@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo & Trial CTA Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    
+    .section { padding: 4rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+    
+    /* Hero CTA */
+    .hero-cta {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      border-radius: 1.5rem;
+      padding: 4rem;
+      color: white;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .hero-cta h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero-cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 1rem 2rem; border-radius: 100px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+    .btn-white { background: white; color: #1e3a5f; }
+    .btn-outline { background: transparent; border: 2px solid white; color: white; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    
+    /* Demo Options */
+    .demo-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .demo-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    
+    .demo-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    
+    .demo-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .demo-card h3 { font-size: 1.25rem; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .demo-card p { color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .demo-card .btn { padding: 0.75rem 1.5rem; font-size: 0.9rem; }
+    
+    /* Trial Form */
+    .trial-section {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 3rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .trial-section h2 { text-align: center; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .trial-section .subtitle { text-align: center; color: #64748b; margin-bottom: 2rem; }
+    
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .form-group { }
+    .form-group label { display: block; font-size: 0.9rem; color: #334155; margin-bottom: 0.5rem; font-weight: 500; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .form-full { grid-column: 1 / -1; }
+    
+    .btn-submit {
+      grid-column: 1 / -1;
+      padding: 1rem;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); }
+    
+    /* Trust badges */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .trust-item { text-align: center; }
+    .trust-item span { font-size: 2rem; }
+    .trust-item p { font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; }
+    
+    @media (max-width: 768px) {
+      .demo-options { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .hero-cta h1 { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <!-- Hero CTA -->
+    <div class="hero-cta">
+      <h1>See LSI in Action</h1>
+      <p>Join 20+ Hong Kong schools already using AI to transform education. Book a 30-minute demo or start your free trial today.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-white">📅 Book a Demo</a>
+        <a href="#" class="btn btn-outline">🚀 Start Free Trial</a>
+        <a href="#" class="btn btn-outline">💬 WhatsApp Us</a>
+      </div>
+    </div>
+    
+    <!-- Demo Options -->
+    <div class="demo-options">
+      <div class="demo-card">
+        <div class="demo-icon">📅</div>
+        <h3>Schedule a Demo</h3>
+        <p>30-minute live walkthrough with our team. See how LSI fits your school.</p>
+        <a href="#" class="btn btn-white" style="background: #2563eb; color: white;">Book Now →</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-icon">🚀</div>
+        <h3>Start Free Trial</h3>
+        <p>14-day free access. No credit card required. Explore one AI tool.</p>
+        <a href="#trial-form" class="btn btn-white" style="background: #2563eb; color: white;">Start Trial →</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-icon">💬</div>
+        <h3>WhatsApp Consultation</h3>
+        <p>Quick questions? Chat with us directly on WhatsApp.</p>
+        <a href="https://wa.me/85298282172" class="btn btn-white" style="background: #22c55e; color: white;">Chat Now →</a>
+      </div>
+    </div>
+    
+    <!-- Trial Form -->
+    <div class="trial-section" id="trial-form">
+      <h2>Start Your Free Trial</h2>
+      <p class="subtitle">14 days free. No credit card required.</p>
+      
+      <form class="form-grid">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="e.g. John Wong">
+        </div>
+        
+        <div class="form-group">
+          <label>School Email</label>
+          <input type="email" placeholder="e.g. john@school.edu.hk">
+        </div>
+        
+        <div class="form-group">
+          <label>School Name</label>
+          <input type="text" placeholder="e.g. St. Paul's College">
+        </div>
+        
+        <div class="form-group">
+          <label>Your Role</label>
+          <select>
+            <option>Principal / Vice Principal</option>
+            <option>Panel Head</option>
+            <option>Teacher</option>
+            <option>IT Coordinator</option>
+            <option>Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Which AI tool interests you?</label>
+          <select>
+            <option>AI School Platform (Recommended)</option>
+            <option>Learning Buddy</option>
+            <option>LLM Wiki</option>
+            <option>AI Automation</option>
+            <option>Meta School (VR/AR)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Number of Students</label>
+          <select>
+            <option>Under 200</option>
+            <option>200 - 500</option>
+            <option>500 - 1,000</option>
+            <option>1,000+</option>
+          </select>
+        </div>
+        
+        <div class="form-group form-full">
+          <label>Phone (for WhatsApp support)</label>
+          <input type="tel" placeholder="e.g. +852 9876 5432">
+        </div>
+        
+        <button type="submit" class="btn-submit">Start My Free Trial →</button>
+      </form>
+      
+      <div class="trust-badges">
+        <div class="trust-item">
+          <span>🔒</span>
+          <p>Data Protected</p>
+        </div>
+        <div class="trust-item">
+          <span>🎓</span>
+          <p>20+ Schools</p>
+        </div>
+        <div class="trust-item">
+          <span>🌏</span>
+          <p>HK-Based Support</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

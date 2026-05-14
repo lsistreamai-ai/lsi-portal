@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Test</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .test-box {
+      background: rgba(255,255,255,0.1);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    h1 { margin-bottom: 20px; }
+    p { opacity: 0.7; margin-bottom: 20px; }
+    code { background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 8px; display: inline-block; }
+    .checklist {
+      text-align: left;
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    .checklist li { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <div class="test-box">
+    <h1>🤖 Chatbot Test Page</h1>
+    <p>If you see the 💬 bubble in the bottom-right corner, it works!</p>
+    <code>Look for: 💬 in bottom-right</code>
+    
+    <div class="checklist">
+      <strong>Debug Checklist:</strong>
+      <ul>
+        <li>✅ Script loaded: js/chatbot.js</li>
+        <li>✅ Elements created on DOMContentLoaded</li>
+        <li>✅ z-index: 999999</li>
+        <li>✅ position: fixed</li>
+        <li>✅ bottom: 20px, right: 20px</li>
+      </ul>
+    </div>
+    
+    <p style="margin-top: 30px;">
+      <a href="index.html" style="color: #48dbfb;">← Back to Home</a>
+    </p>
+  </div>
+  
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

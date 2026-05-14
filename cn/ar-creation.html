@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR創作課程 | LSI 教育智能</title>
+  <meta name="description" content="AR擴增實境創作課程 - 創作互動AR故事及書籍。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #1e3a5f; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
+    .nav-links a:hover { color: #1e3a5f; }
+    .lang-toggle { display: flex; background: #f1f5f9; border-radius: 100px; overflow: hidden; }
+    .lang-toggle a { padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; font-size: 0.875rem; color: #64748b; }
+    .lang-toggle a.active { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; }
+    .hero { padding: 8rem 1.5rem 4rem; background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #64748b; text-decoration: none; font-size: 0.875rem; margin-bottom: 1.5rem; }
+    .back-link:hover { color: #1e3a5f; }
+    .hero h1 { font-size: 2.5rem; font-weight: 800; color: #1e3a5f; margin-bottom: 1rem; }
+    .hero > .container > p { font-size: 1.125rem; color: #64748b; margin-bottom: 1.5rem; max-width: 700px; line-height: 1.8; }
+    .course-meta { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .meta-item { font-size: 0.875rem; color: #64748b; }
+    .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    .gallery-section { padding: 5rem 1.5rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 { font-size: 2rem; font-weight: 700; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .section-header p { color: #64748b; }
+    .subsection-title { font-size: 1.25rem; font-weight: 600; color: #1e3a5f; margin-bottom: 1.5rem; margin-top: 3rem; }
+    .subsection-title:first-of-type { margin-top: 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .gallery-item a { display: block; text-decoration: none; }
+    .gallery-item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 1rem; transition: transform 0.3s, box-shadow 0.3s; }
+    .gallery-item a:hover img { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+    .gallery-label { text-align: center; margin-top: 0.75rem; color: #1e3a5f; font-weight: 500; font-size: 0.875rem; }
+    .cta-section { padding: 5rem 1.5rem; background: linear-gradient(135deg, #1e3a5f, #2563eb); text-align: center; }
+    .cta-section h2 { color: white; font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+    .cta-btn { display: inline-block; background: white; color: #1e3a5f; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 700; }
+    .faq-section { padding: 5rem 1.5rem; background: #f8fafc; }
+    .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .faq-item { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .faq-question { color: #1e3a5f; font-weight: 600; margin-bottom: 0.75rem; }
+    .faq-answer { color: #64748b; font-size: 0.875rem; line-height: 1.7; }
+    footer { background: #0f172a; color: white; padding: 4rem 1.5rem 2rem; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+    .footer-brand h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #64748b; font-size: 0.875rem; }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: white; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 40; flex-direction: column; gap: 1.5rem; }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; font-size: 1.125rem; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0; }
+    .mobile-menu .lang-toggle { width: fit-content; margin-top: 1rem; }
+    @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } .faq-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .mobile-toggle { display: block; } .hero h1 { font-size: 1.75rem; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr; text-align: center; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">主頁</a>
+        <a href="about.html">關於我們</a>
+        <a href="courses.html">課程</a>
+        <a href="ai-tools.html">AI工具</a>
+        <div class="lang-toggle">
+          <a href="../ar-creation.html">EN</a>
+          <a href="#" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="container">
+      <a href="courses.html" class="back-link"><span>←</span> 返回課程</a>
+      <h1>AR擴增實境創作</h1>
+      <p>創作一個能與讀者產生共鳴的故事，可以幫助你成為作家。你可以透過作者分享會分享你的創作歷程，甚至出版自己的書籍。AR技術讓你的故事更生動有趣。</p>
+      <div class="course-meta">
+        <div class="meta-item">📅 12週</div>
+        <div class="meta-item">📊 中階至高階</div>
+        <div class="meta-item">📚 4個單元</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>AR故事書廊</h2>
+        <p>點擊照片查看與書籍封面匹配的AR故事！</p>
+      </div>
+      
+      <h3 class="subsection-title">互動AR故事系列</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/animal_adventures/" target="_blank"><img src="../images/ar-books/animal_adventure.webp" alt="動物探險"><div class="gallery-label">動物探險</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/around_the_world" target="_blank"><img src="../images/ar-books/around_the_world.webp" alt="環遊世界"><div class="gallery-label">環遊世界</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/christmas_eve" target="_blank"><img src="../images/ar-books/christmas_eve.webp" alt="聖誕前夕"><div class="gallery-label">聖誕前夕</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/dinosaur_discovery/" target="_blank"><img src="../images/ar-books/dinosaur_discovery.webp" alt="恐龍探索"><div class="gallery-label">恐龍探索</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/fairy_tale_journeys" target="_blank"><img src="../images/ar-books/fairytale_journeys.webp" alt="童話之旅"><div class="gallery-label">童話之旅</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/hidden_kingdoms" target="_blank"><img src="../images/ar-books/hidden_kingdoms.webp" alt="神秘王國"><div class="gallery-label">神秘王國</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/mythical_creatures" target="_blank"><img src="../images/ar-books/mythical_creatures.webp" alt="神話生物"><div class="gallery-label">神話生物</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/robots_of_tomorrow" target="_blank"><img src="../images/ar-books/robots_of_tomorrow.webp" alt="未來機械人"><div class="gallery-label">未來機械人</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/space_explorers/" target="_blank"><img src="../images/ar-books/space_explorers.webp" alt="太空探險"><div class="gallery-label">太空探險</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/the_magic_garden" target="_blank"><img src="../images/ar-books/the_magic_garden.webp" alt="魔法花園"><div class="gallery-label">魔法花園</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/underwater_world" target="_blank"><img src="../images/ar-books/underwater_world.webp" alt="海底世界"><div class="gallery-label">海底世界</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/arbooks/halloween_nights" target="_blank"><img src="../images/ar-books/11.webp" alt="萬聖節之夜"><div class="gallery-label">萬聖節之夜</div></a></div>
+      </div>
+      
+      <h3 class="subsection-title">幼兒學習系列</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/yllssar/ylarbook/1booka/unity/" target="_blank"><img src="../images/ar-books/booka.webp" alt="第一冊"><div class="gallery-label">第一冊</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/yllssar/ylarbook/2bookb/unity/" target="_blank"><img src="../images/ar-books/bookb.webp" alt="第二冊"><div class="gallery-label">第二冊</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/yllssar/ylarbook/3bookc/unity/" target="_blank"><img src="../images/ar-books/bookc.webp" alt="第三冊"><div class="gallery-label">第三冊</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/yllssar/ylarbook/4bookd/unity/" target="_blank"><img src="../images/ar-books/bookd.webp" alt="第四冊"><div class="gallery-label">第四冊</div></a></div>
+        <div class="gallery-item"><a href="https://lsiworld.synology.me/yllssar/ylarbook/5booke/unity/" target="_blank"><img src="../images/ar-books/booke.webp" alt="第五冊"><div class="gallery-label">第五冊</div></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>準備好開始創作了嗎？</h2>
+      <p>參加我們的AR創作課程，讓你的故事栩栩如生！</p>
+      <a href="contact.html" class="cta-btn">立即報名 →</a>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>常見問題</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3 class="faq-question">如何使用AR書籍掃描功能？</h3>
+          <p class="faq-answer">開啟裝置上的AR應用程式，前往「掃描」功能。將相機對準書籍封面或指定的AR標記即可開始掃描。</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">可以同時掃描多本書嗎？</h3>
+          <p class="faq-answer">不可以，應用程式每次只能掃描一本書。請逐一掃描每本書以獲得最佳效果。</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">掃描失敗怎麼辦？</h3>
+          <p class="faq-answer">請確保在光線充足的環境下，書籍封面清晰可見。嘗試調整書籍位置或相機距離。如問題持續，請重新啟動應用程式。</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">掃描後可以使用什麼功能？</h3>
+          <p class="faq-answer">掃描AR書籍後，您可以存取互動元素，包括測驗、與書籍相關的額外內容，以及影片或動畫等增強閱讀體驗的多媒體功能。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI 教育智能</h3><p>以AI驅動的工具賦能教育工作者和學生，讓教學更智能。</p></div>
+      <div class="footer-col"><h4>平台</h4><ul><li><a href="ai-tools.html">AI工具</a></li><li><a href="courses.html">課程</a></li><li><a href="about.html">關於我們</a></li></ul></div>
+      <div class="footer-col"><h4>AI工具</h4><ul><li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI平台</a></li><li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li><li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li></ul></div>
+      <div class="footer-col"><h4>聯絡我們</h4><ul><li>info@lsistream.ai</li><li>+852 9828 2172</li><li>葵涌</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 語言服務國際(教得)有限公司 版權所有</p></div>
+  </footer>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">主頁</a>
+    <a href="about.html">關於我們</a>
+    <a href="courses.html">課程</a>
+    <a href="ai-tools.html">AI工具</a>
+    <div class="lang-toggle">
+      <a href="../ar-creation.html">EN</a>
+      <a href="#" class="active">中</a>
+    </div>
+  </div>
+
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

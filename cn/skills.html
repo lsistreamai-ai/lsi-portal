@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教师资源 | LSI教育AI</title>
+  <meta name="description" content="香港教师课堂AI教学工具和资源。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans SC', 'Inter', sans-serif; background: #f8fafc; color: #334155; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+/* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .nav-links a .icon { font-size: 1rem; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    
+    /* Mobile */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #1e3a5f;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    
+    /* Page Header */
+    .page-header { padding: 8rem 0 5rem; background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; text-align: center; }
+    .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .page-header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+    
+    /* Resources Grid */
+    .resources-section { padding: 5rem 0; }
+    
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    
+    .resource-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    }
+    
+    .resource-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .resource-card h3 { font-size: 1.25rem; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .resource-card p { color: #64748b; font-size: 0.95rem; line-height: 1.6; }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    .status-coming { background: #fef3c7; color: #d97706; }
+    .status-ready { background: #dcfce7; color: #16a34a; }
+    .status-new { background: #dbeafe; color: #2563eb; }
+    
+    .category-section { margin-bottom: 4rem; }
+    .category-title { 
+      font-size: 1.5rem; 
+      color: #1e3a5f; 
+      margin-bottom: 1.5rem; 
+      padding-bottom: 0.5rem; 
+      border-bottom: 2px solid #e2e8f0; 
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .resources-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 768px) {
+      .resources-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .lang-toggle { display: none; }
+      .mobile-toggle { display: block; }
+      .page-header h1 { font-size: 2rem; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> 主頁</a>
+        <a href="about.html"><span class="icon">👤</span> 關於我們</a>
+        <a href="courses.html"><span class="icon">📚</span> 課程</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI工具</a>
+        <a href="skills.html"><span class="icon">👨🏫</span> 資源</a>
+        <a href="showcase.html"><span class="icon">🏆</span> 作品</a>
+        <a href="contact.html"><span class="icon">📧</span> 聯絡我們</a>
+        <div class="lang-toggle">
+          <a href="../skills.html">EN</a>
+          <a href="#" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 主頁</a>
+    <a href="about.html">👤 關於我們</a>
+    <a href="courses.html">📚 課程</a>
+    <a href="ai-tools.html">🤖 AI工具</a>
+    <a href="skills.html">👨🏫 資源</a>
+    <a href="https://games.lsistream.ai" target="_blank">🎮 遊戲</a>
+    <a href="contact.html">📧 聯絡我們</a>
+    <div class="lang-toggle">
+      <a href="../contact.html">EN</a>
+      <a href="#" class="active">中</a>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>📚 教师资源</h1>
+    <p>专为香港教师设计的AI课堂工具和教学资源</p>
+  </div>
+
+  <!-- Resources Section -->
+  <section class="resources-section">
+    <div class="container">
+      
+      <!-- School Tools -->
+      <div class="category-section">
+        <h2 class="category-title">🔧 学校工具</h2>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-icon">✅</div>
+            <h3>考勤追踪</h3>
+            <p>数码考勤系统，支援QR码扫描、自动迟到通知家长，以及行政考勤报告。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">📊</div>
+            <h3>成绩表生成器</h3>
+            <p>根据作业、测验及参与度自动生成学生成绩表。提供学校自订模板。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">📅</div>
+            <h3>行事历整合</h3>
+            <p>将功课期限和考试日期同步至Google Calendar、Outlook或学校LMS。学生自动接收提醒。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">💳</div>
+            <h3>缴费整合</h3>
+            <p>家长可直接透过平台支付学费、课程费用及课外活动费用。支援转数快、PayMe及信用卡。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">🔔</div>
+            <h3>推播通知</h3>
+            <p>透过手机应用程式向学生和家长发送即时通知。功课提醒、成绩更新及公告。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">🏫</div>
+            <h3>多学校仪表板</h3>
+            <p>适合学校网络及联校——在单一仪表板查看多个学校的使用量、表现及进度。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">👨🏫</div>
+            <h3>教师活动监察</h3>
+            <p>学校管理员可追踪平台使用情况，查看哪些教师积极使用AI工具，并识别培训需求。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">📈</div>
+            <h3>即时进度追踪</h3>
+            <p>学生做作业时可即时查看进度。立刻识别学习困难学生并及早介入。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">📋</div>
+            <h3>学生行为追踪</h3>
+            <p>记录和追踪学生行为、奖惩和事件。生成家长会议和学校记录报告。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Subject Resources -->
+      <div class="category-section">
+        <h2 class="category-title">📚 学科资源</h2>
+        <div class="resources-grid">
+          
+          <a href="https://zperiod-eight.vercel.app" target="_blank" class="resource-card">
+            <div class="resource-icon">⚗️</div>
+            <h3>元素周期表</h3>
+            <p>互动元素周期表，支援3D原子模型、元素特性及双语显示。适合化学课堂使用。</p>
+            <span class="status-badge status-new">新增</span>
+          </a>
+          
+          <div class="resource-card">
+            <div class="resource-icon">🧮</div>
+            <h3>数学工具</h3>
+            <p>代数、几何及微积分互动数学工具。逐步解题并附视觉解说。</p>
+            <span class="status-badge status-coming">即将推出</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">📖</div>
+            <h3>英文工具</h3>
+            <p>写作助手、阅读理解练习及词汇建构工具，配合香港课程。</p>
+            <span class="status-badge status-coming">即将推出</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">🔤</div>
+            <h3>中文工具</h3>
+            <p>写字练习、阅读理解及作文辅助工具，支援中文学习。</p>
+            <span class="status-badge status-coming">即将推出</span>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Content & Curriculum -->
+      <div class="category-section">
+        <h2 class="category-title">📖 内容与课程</h2>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-icon">🛒</div>
+            <h3>内容市场</h3>
+            <p>浏览和分享香港教师编写的教案、工作纸和教学资源。买卖或免费下载教材。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Communication -->
+      <div class="category-section">
+        <h2 class="category-title">💬 沟通</h2>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-icon">🎤</div>
+            <h3>语音转文字</h3>
+            <p>口述功课、反馈和笔记。适合喜欢说话多于打字的教师。支援中英文。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+          
+          <div class="resource-card">
+            <div class="resource-icon">📚</div>
+            <h3>AI辅导记录</h3>
+            <p>家长可查看子女完整的AI辅导课堂——问题、涵盖主题及学习进度。</p>
+            <span class="status-badge status-ready">准备部署</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI教育AI</h3>
+        <p>以AI赋能教育工作者和学生，实现更智能的教与学。</p>
+      </div>
+      <div class="footer-col">
+        <h4>平台</h4>
+        <ul>
+          <li><a href="ai-tools.html">AI工具</a></li>
+          <li><a href="skills.html">教师资源</a></li>
+          <li><a href="courses.html">课程</a></li>
+          <li><a href="about.html">关于我们</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>AI工具</h4>
+        <ul>
+          <li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI平台</a></li>
+          <li><a href="https://www.cypressai.shop/login" target="_blank">学习伙伴</a></li>
+          <li><a href="https://www.vispace.io/" target="_blank">元学校</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系我们</h4>
+        <ul>
+          <li>info@lsistream.ai</li>
+          <li>+852 9828 2172</li>
+          <li>新界葵涌</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Language Services International (PET) Ltd. 保留所有权利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

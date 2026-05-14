@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STEAM課程 | LSI 教育智能</title>
+  <meta name="description" content="香港學校STEAM課程 - AR、機械人、編程、3D設計。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif; background: #ffffff; color: #1e293b; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #1e3a5f; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
+    .nav-links a:hover { color: #1e3a5f; }
+    .lang-toggle { display: flex; background: #f1f5f9; border-radius: 100px; overflow: hidden; }
+    .lang-toggle a { padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; font-size: 0.875rem; color: #64748b; }
+    .lang-toggle a.active { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; }
+    .page-hero { padding: 8rem 1.5rem 4rem; background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%); }
+    .page-hero h1 { font-size: 3rem; font-weight: 800; color: #1e3a5f; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.25rem; color: #64748b; }
+    .section { padding: 5rem 1.5rem; }
+    .section:nth-child(even) { background: #f8fafc; }
+    .section-title { font-size: 2rem; font-weight: 700; color: #1e3a5f; margin-bottom: 0.5rem; text-align: center; }
+    .section-desc { color: #64748b; text-align: center; margin-bottom: 3rem; }
+    .programs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .program-card { background: white; border-radius: 1.5rem; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; transition: transform 0.3s; display: block; }
+    .program-card:hover { transform: translateY(-8px); }
+    .program-image { height: 250px; overflow: hidden; }
+    .program-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .program-card:hover .program-image img { transform: scale(1.05); }
+    .program-content { padding: 2rem; }
+    .program-badge { display: inline-block; background: #ede9fe; color: #5b21b6; padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .program-card h3 { color: #1e3a5f; font-weight: 600; font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .program-card p { color: #64748b; font-size: 0.875rem; margin-bottom: 1rem; line-height: 1.6; }
+    .program-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: #94a3b8; margin-bottom: 1rem; }
+    .program-cta { color: #3b82f6; font-weight: 600; font-size: 0.875rem; }
+    .features-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .feature-item { background: white; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: #1e3a5f; font-weight: 500; }
+    .feature-item::before { content: '✓ '; color: #10b981; margin-right: 0.5rem; }
+    footer { background: #0f172a; color: white; padding: 4rem 1.5rem 2rem; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem; }
+    .footer-brand h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #64748b; font-size: 0.875rem; }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: white; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); z-index: 40; flex-direction: column; gap: 1.5rem; }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a { text-decoration: none; color: #1e3a5f; font-weight: 500; font-size: 1.125rem; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0; }
+    .mobile-menu .lang-toggle { width: fit-content; margin-top: 1rem; }
+    @media (max-width: 1024px) { .programs-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .nav-links { display: none; } .mobile-toggle { display: block; } .page-hero h1 { font-size: 2rem; } .features-list { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; text-align: center; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="../images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI Education AI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">主頁</a>
+        <a href="about.html">關於我們</a>
+        <a href="courses.html">課程</a>
+        <a href="ai-tools.html">AI工具</a>
+        <div class="lang-toggle">
+          <a href="../steam-programs.html">EN</a>
+          <a href="#" class="active">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>STEAM課程</h1>
+      <p>科學、科技、工程、藝術及數學課程，啟發創意並建立未來技能。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">我們的STEAM課程</h2>
+      <p class="section-desc">適合各級學生的綜合課程，從小學到中學。</p>
+      <div class="programs-grid">
+        <a href="ar-creation.html" class="program-card">
+          <div class="program-image"><img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=800&auto=format&fit=crop&q=80" alt="AR Creation"></div>
+          <div class="program-content">
+            <span class="program-badge">🌐 沉浸式科技</span>
+            <h3>AR擴增實境創作</h3>
+            <p>創作互動AR故事及書籍。學生學習使用尖端AR技術讓寫作栩栩如生。</p>
+            <div class="program-meta"><span>📅 12週</span><span>📊 中階至高階</span></div>
+            <span class="program-cta">了解更多 →</span>
+          </div>
+        </a>
+        <a href="contact.html" class="program-card">
+          <div class="program-image"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=80" alt="Robotics"></div>
+          <div class="program-content">
+            <span class="program-badge">🤖 工程</span>
+            <h3>機械人及工程</h3>
+            <p>透過實作專案組裝及編寫機械人程式。學生學習機械設計、電子及編程。</p>
+            <div class="program-meta"><span>📅 10週</span><span>📊 P4-S3</span></div>
+            <span class="program-cta">查詢詳情 →</span>
+          </div>
+        </a>
+        <a href="contact.html" class="program-card">
+          <div class="program-image"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=80" alt="Coding"></div>
+          <div class="program-content">
+            <span class="program-badge">💻 編程</span>
+            <h3>創意編程</h3>
+            <p>透過藝術、音樂及互動專案學習編程。適合初學者在創作中學習。</p>
+            <div class="program-meta"><span>📅 8週</span><span>📊 初學者</span></div>
+            <span class="program-cta">查詢詳情 →</span>
+          </div>
+        </a>
+        <a href="contact.html" class="program-card">
+          <div class="program-image"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop&q=80" alt="3D Design"></div>
+          <div class="program-content">
+            <span class="program-badge">🎨 設計</span>
+            <h3>3D設計及打印</h3>
+            <p>掌握3D建模軟件，以3D打印將設計實現。從概念到實體創作。</p>
+            <div class="program-meta"><span>📅 8週</span><span>📊 所有程度</span></div>
+            <span class="program-cta">查詢詳情 →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">為何選擇STEAM教育？</h2>
+      <p style="text-align: center; color: #64748b; max-width: 700px; margin: 0 auto 3rem;">STEAM教育將科學、科技、工程、藝術及數學融入有趣的實作學習體驗，為學生迎接未來做好準備。</p>
+      <div class="features-list">
+        <div class="feature-item">培養批判性思維及解難能力</div>
+        <div class="feature-item">鼓勵創意及創新</div>
+        <div class="feature-item">為未來職業做好準備</div>
+        <div class="feature-item">實作專案學習</div>
+        <div class="feature-item">建立協作及溝通技巧</div>
+        <div class="feature-item">對應DSE及IB課程</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><h3><img src="../images/logo.jpg" alt="LSI" style="height: 32px; border-radius: 8px;"> LSI 教育智能</h3><p>以AI驅動的工具賦能教育工作者和學生，讓教學更智能。</p></div>
+      <div class="footer-col"><h4>平台</h4><ul><li><a href="ai-tools.html">AI工具</a></li><li><a href="courses.html">課程</a></li><li><a href="about.html">關於我們</a></li></ul></div>
+      <div class="footer-col"><h4>AI工具</h4><ul><li><a href="https://platform.lsistream.ai/demologin?redirect=%2Fdemo" target="_blank">LSI平台</a></li><li><a href="https://www.cypressai.shop/login" target="_blank">Cypress</a></li><li><a href="https://www.vispace.io/" target="_blank">Vispace</a></li></ul></div>
+      <div class="footer-col"><h4>聯絡我們</h4><ul><li>info@lsistream.ai</li><li>+852 9828 2172</li><li>葵涌</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 語言服務國際(教得)有限公司 版權所有</p></div>
+  </footer>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">主頁</a>
+    <a href="about.html">關於我們</a>
+    <a href="courses.html">課程</a>
+    <a href="ai-tools.html">AI工具</a>
+    <div class="lang-toggle">
+      <a href="../steam-programs.html">EN</a>
+      <a href="#" class="active">中</a>
+    </div>
+  </div>
+
+
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

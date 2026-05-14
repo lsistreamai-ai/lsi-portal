@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Page Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    
+    .section { padding: 5rem 1.5rem; max-width: 900px; margin: 0 auto; }
+    
+    .section-title { text-align: center; font-size: 2.5rem; font-weight: 700; color: #1e3a5f; margin-bottom: 1rem; }
+    .section-subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; font-size: 1.1rem; }
+    
+    /* FAQ Categories */
+    .faq-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    
+    .faq-cat {
+      padding: 0.75rem 1.5rem;
+      background: white;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s;
+    }
+    
+    .faq-cat:hover, .faq-cat.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    
+    /* FAQ Items */
+    .faq-category { margin-bottom: 3rem; }
+    .faq-category h2 { font-size: 1.25rem; color: #1e3a5f; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; }
+    
+    .faq-item {
+      background: white;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      color: #1e3a5f;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question:hover { background: #f8fafc; }
+    
+    .faq-icon { font-size: 1.25rem; color: #2563eb; }
+    
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      color: #64748b;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    .faq-answer ul { margin-top: 0.75rem; margin-left: 1.5rem; }
+    .faq-answer li { margin-bottom: 0.5rem; }
+    
+    /* CTA */
+    .faq-cta {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      border-radius: 1.5rem;
+      padding: 3rem;
+      color: white;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    .faq-cta h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .faq-cta p { opacity: 0.9; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: 1rem 2rem; background: white; color: #1e3a5f; border-radius: 100px; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <h1 class="section-title">Frequently Asked Questions</h1>
+    <p class="section-subtitle">Everything you need to know about LSI and our AI education tools</p>
+    
+    <div class="faq-categories">
+      <span class="faq-cat active">All</span>
+      <span class="faq-cat">Getting Started</span>
+      <span class="faq-cat">Security & Privacy</span>
+      <span class="faq-cat">Pricing</span>
+      <span class="faq-cat">Technical</span>
+      <span class="faq-cat">Training</span>
+    </div>
+    
+    <!-- Getting Started -->
+    <div class="faq-category">
+      <h2>🚀 Getting Started</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How quickly can we get started?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Most schools can start using LSI within 1-2 weeks after signing up. This includes account setup, teacher onboarding, and initial training. For urgent needs, we can expedite to 48 hours for the Starter plan.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do we need special hardware or software?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          No! LSI works on any device with a web browser - computers, tablets, or smartphones. For Meta School (VR/AR) features, we recommend basic VR headsets, but even Google Cardboard works for beginners.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What support do you provide during onboarding?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          All plans include:
+          <ul>
+            <li>Video training tutorials</li>
+            <li>PDF user guides (English & Chinese)</li>
+            <li>WhatsApp support during business hours</li>
+          </ul>
+          Professional and Enterprise plans include live training sessions and a dedicated account manager.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Security -->
+    <div class="faq-category">
+      <h2>🔒 Security & Privacy</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is student data safe with LSI?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely. Student data security is our top priority:
+          <ul>
+            <li>All data encrypted at rest and in transit (AES-256)</li>
+            <li>Servers located in Hong Kong (data residency)</li>
+            <li>Compliant with PDPO (Personal Data Privacy Ordinance)</li>
+            <li>No data shared with third parties</li>
+            <li>Regular security audits by independent firms</li>
+          </ul>
+          We can sign your school's DPA (Data Processing Agreement) upon request.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can students access AI to cheat?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We've built safeguards to prevent misuse:
+          <ul>
+            <li>Learning Buddy guides students to answers rather than giving them directly</li>
+            <li>Teachers can monitor all AI interactions</li>
+            <li>Content filters aligned with EDB guidelines</li>
+            <li>Usage logs for accountability</li>
+          </ul>
+          The goal is to teach students HOW to learn, not to do their work for them.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Who owns the content and data?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Your school owns all content created using LSI (lesson plans, assessments, student work). LSI does not use your data to train AI models. You can export and delete all data at any time.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pricing -->
+    <div class="faq-category">
+      <h2>💰 Pricing</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is there a free trial?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We offer 14 days free access to one AI tool of your choice. No credit card required. You can try all features with real students and teachers.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What payment methods do you accept?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We accept bank transfer, cheque, and credit card. Official invoices are provided for school procurement. PO (Purchase Order) accepted for government schools.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can we cancel anytime?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Monthly plans can be cancelled with 30 days notice. Annual plans receive prorated refunds. We'll help export your data before cancellation at no charge.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Technical -->
+    <div class="faq-category">
+      <h2>⚙️ Technical</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Does LSI integrate with our existing systems?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We integrate with:
+          <ul>
+            <li>eClass (student data sync)</li>
+            <li>Google Classroom (assignments)</li>
+            <li>Microsoft Teams</li>
+            <li>School websites (SSO available)</li>
+          </ul>
+          Custom integrations available for Enterprise plans.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What happens if internet goes down?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          LSI requires internet connection to function. However:
+          <ul>
+            <li>Auto-save prevents data loss</li>
+            <li>Mobile app works offline for students (syncs when connected)</li>
+            <li>99.9% uptime guaranteed (SLA)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is LSI available in Chinese?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! The entire platform is available in Traditional Chinese (繁體中文) and English. AI responses are bilingual by default for Hong Kong schools.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Training -->
+    <div class="faq-category">
+      <h2>📚 Training & Support</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you provide teacher training?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! All plans include self-paced video training. Professional and Enterprise plans include:
+          <ul>
+            <li>Live training sessions (in-person or Zoom)</li>
+            <li>Quarterly follow-ups</li>
+            <li>Train-the-trainer programs</li>
+          </ul>
+          We can also provide CPD certificates for teacher development hours.
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do we get help if something goes wrong?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Multiple support channels:
+          <ul>
+            <li>Help centre with 100+ articles</li>
+            <li>WhatsApp: +852 9828 2172 (Mon-Fri 9-6)</li>
+            <li>Email: support@lsistream.ai</li>
+            <li>Phone support (Enterprise only)</li>
+          </ul>
+          Average response time: under 2 hours during business hours.
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA -->
+    <div class="faq-cta">
+      <h3>Still have questions?</h3>
+      <p>We're happy to help. WhatsApp us for a quick answer.</p>
+      <a href="https://wa.me/85298282172" class="btn">💬 Chat on WhatsApp</a>
+    </div>
+  </section>
+
+</body>
+</html>

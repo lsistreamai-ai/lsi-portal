@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LSI Courses | STEAM, DSE & AI Education</title>
+  <meta name="description" content="STEAM, DSE prep, and AI literacy courses for Hong Kong schools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #334155; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #1e3a5f; }
+    .nav-links a .icon { font-size: 1rem; }
+    .lang-toggle {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .lang-toggle a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .lang-toggle a.active {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: white;
+    }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      z-index: 40;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #1e3a5f;
+      font-weight: 500;
+      font-size: 1.125rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .mobile-menu .lang-toggle {
+      width: fit-content;
+      margin-top: 1rem;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 8rem 1.5rem 4rem;
+      background: rgba(240, 249, 255, 0.3);
+    }
+    .hero-content { text-align: center; max-width: 700px; margin: 0 auto; }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: #64748b;
+      line-height: 1.7;
+    }
+    
+    /* Courses Grid */
+    .courses-section {
+      padding: 4rem 1.5rem 6rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+    }
+    .section-header p {
+      color: #64748b;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    /* Course Card */
+    .course-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+    .course-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    .course-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .course-card:hover .course-image img {
+      transform: scale(1.05);
+    }
+    .course-content {
+      padding: 1.5rem;
+    }
+    .course-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+    .course-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 0.5rem;
+    }
+    .course-content p {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .course-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .course-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Showcase Section */
+    .showcase-section {
+      padding: 60px 24px 80px;
+      background: #f8fafc;
+    }
+    
+    .category-box {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .category-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .category-badge {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
+    .category-badge.primary {
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      color: #15803d;
+    }
+    
+    .category-badge.secondary {
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      color: #1d4ed8;
+    }
+    
+    .category-header h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    .category-header p {
+      font-size: 15px;
+      color: var(--text-light);
+    }
+    
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .showcase-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .showcase-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.15);
+      transform: translateY(-6px);
+    }
+    
+    .showcase-card .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    
+    .showcase-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    .showcase-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    
+    .showcase-card .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(6,182,212,0.1));
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    @media (max-width: 900px) {
+      .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 600px) {
+      .showcase-section { padding: 40px 16px; }
+      .category-box { padding: 24px; }
+      .showcase-grid { grid-template-columns: 1fr; gap: 16px; }
+      .category-header h2 { font-size: 22px; }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background: white;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn 0.3s ease;
+      position: relative;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      min-width: 44px;
+      min-height: 44px;
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: all 0.2s;
+      z-index: 10;
+      color: #1e3a5f;
+      line-height: 1;
+    }
+    .modal-close-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+    .modal-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .modal-content {
+      padding: 2rem;
+    }
+    .modal-badge {
+      display: inline-block;
+      padding: 0.375rem 1rem;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 1rem;
+    }
+    .modal-description {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .modal-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #f8fafc;
+      border-radius: 10px;
+    }
+    .detail-icon {
+      font-size: 1.25rem;
+    }
+    .detail-text {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .detail-text strong {
+      display: block;
+      font-weight: 600;
+      color: #1e3a5f;
+    }
+    
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 1.5rem 2rem;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand p { color: #94a3b8; line-height: 1.7; }
+    .footer-col h4 { font-weight: 600; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: #94a3b8; text-decoration: none; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: 2rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .modal {
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .modal-overlay {
+        padding: 0;
+        align-items: stretch;
+      }
+      .modal-image {
+        height: 180px;
+      }
+      .modal-content {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal {
+      background: white;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 95%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn 0.3s ease;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    }
+    
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .modal-header {
+      padding: 32px 32px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    
+    .modal-header h3 {
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .modal-header .icon {
+      font-size: 32px;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--text-light);
+      padding: 4px;
+      line-height: 1;
+    }
+    
+    .modal-close:hover {
+      color: var(--text);
+    }
+    
+    .modal-body {
+      padding: 32px;
+    }
+    
+    .modal-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .tag-teaching { background: #dcfce7; color: #15803d; }
+    .tag-student { background: #f3e8ff; color: #7c3aed; }
+    .tag-admin { background: #ffedd5; color: #c2410c; }
+
+    /* Photo Marquee */
+    .photo-marquee {
+      overflow: hidden;
+      padding: 0 0;
+      background: white;
+    }
+    
+    .marquee-track {
+      display: flex;
+      width: max-content;
+    }
+    
+    .marquee-content {
+      display: flex;
+      gap: 0;
+      animation: marquee 30s linear infinite;
+    }
+    
+    .marquee-content img {
+      height: 120px;
+      width: auto;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .marquee-content img:hover {
+      transform: scale(1.05);
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    @media (max-width: 768px) {
+      .marquee-content img { height: 80px; }
+    }
+
+</style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.jpg" alt="LSI Logo" style="height: 44px; border-radius: 10px;">
+        <span>LSI</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html"><span class="icon">🏠</span> Home</a>
+        <a href="about.html"><span class="icon">👤</span> About</a>
+        <a href="courses.html"><span class="icon">📚</span> Courses</a>
+        <a href="ai-tools.html"><span class="icon">🤖</span> AI Platform</a>
+        <a href="showcase.html"><span class="icon">🏆</span> Showcase</a>
+        <a href="contact.html"><span class="icon">📧</span> Contact</a>
+        <div class="lang-toggle">
+          <a href="courses.html" class="active">EN</a>
+          <a href="cn/courses.html">中</a>
+        </div>
+      </div>
+      <button class="mobile-toggle">☰</button>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👤 About</a>
+    <a href="courses.html">📚 Courses</a>
+    <a href="ai-tools.html">🤖 AI Platform</a>
+    <a href="showcase.html">🏆 Showcase</a>
+    <a href="contact.html">📧 Contact</a>
+    <div class="lang-toggle">
+      <a href="showcase.html" class="active">EN</a>
+      <a href="cn/showcase.html">中</a>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.mobile-toggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    });
+  </script>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Hands-On Learning for the Future</h1>
+      <p>STEAM programs, DSE preparation, and AI education designed to inspire creativity and prepare students for tomorrow.</p>
+    </div>
+  </section>
+
+  <!-- Photo Marquee -->
+  <section class="photo-marquee">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <img src="images/dse-class.jpg" alt="DSE Class">
+        <img src="images/dse-learn.jpg" alt="DSE Learning">
+        <img src="images/ai-school-platform.jpg" alt="AI Platform">
+        <img src="images/learning-buddy.jpg" alt="Learning Buddy">
+        <img src="images/llm-wiki.jpg" alt="LLM Wiki">
+        <img src="images/ai-automation.jpg" alt="AI Automation">
+        <img src="images/3d-design.jpg" alt="3D Design">
+        <img src="images/ai-discovery.jpg" alt="AI Discovery">
+        <img src="images/ar-adventure.jpg" alt="AR Adventure">
+        <img src="images/digitalart.jpg" alt="Digital Art">
+        <img src="images/vr-world.jpg" alt="VR World">
+        <img src="images/metaverse.jpg" alt="Metaverse">
+
+        <img src="images/arbookcover.jpg" alt="AR Book">
+        <!-- Duplicate for seamless loop -->
+        <img src="images/dse-class.jpg" alt="DSE Class">
+        <img src="images/dse-learn.jpg" alt="DSE Learning">
+        <img src="images/ai-school-platform.jpg" alt="AI Platform">
+        <img src="images/learning-buddy.jpg" alt="Learning Buddy">
+        <img src="images/llm-wiki.jpg" alt="LLM Wiki">
+        <img src="images/ai-automation.jpg" alt="AI Automation">
+        <img src="images/3d-design.jpg" alt="3D Design">
+        <img src="images/ai-discovery.jpg" alt="AI Discovery">
+        <img src="images/ar-adventure.jpg" alt="AR Adventure">
+        <img src="images/digitalart.jpg" alt="Digital Art">
+        <img src="images/vr-world.jpg" alt="VR World">
+        <img src="images/metaverse.jpg" alt="Metaverse">
+
+        <img src="images/arbookcover.jpg" alt="AR Book">
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses -->
+  <section class="showcase-section">
+    <div class="container">
+      
+      <!-- Primary School Box -->
+      <div class="category-box">
+        <div class="category-header">
+          <span class="category-badge primary">🌿 Primary School</span>
+          <h2>Projects for P1-P6 Students</h2>
+          <p>Interactive learning tools designed for young learners</p>
+        </div>
+        <div class="showcase-grid">
+          <div class="showcase-card" onclick="openModal('science-lab')">
+            <div class="icon">🔬</div>
+            <h3>Virtual Science Lab</h3>
+            <p>Interactive science experiments for P4-P6</p>
+            <span class="tag">Science</span>
+          </div>
+          
+          <div class="showcase-card" onclick="openModal('chinese-writing')">
+            <div class="icon">✍️</div>
+            <h3>Chinese Writing Assistant</h3>
+            <p>AI composition helper for P5-S3</p>
+            <span class="tag">Chinese</span>
+          </div>
+          
+          <div class="showcase-card" onclick="openModal('english-reading')">
+            <div class="icon">📖</div>
+            <h3>English Reading Companion</h3>
+            <p>Adaptive reading with AI feedback</p>
+            <span class="tag">English</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Secondary School Box -->
+      <div class="category-box">
+        <div class="category-header">
+          <span class="category-badge secondary">🎓 Secondary School</span>
+          <h2>Projects for S1-S6 Students</h2>
+          <p>Advanced tools for exam preparation and skill development</p>
+        </div>
+        <div class="showcase-grid">
+          <div class="showcase-card" onclick="openModal('math-generator')">
+            <div class="icon">🧮</div>
+            <h3>Math Problem Generator</h3>
+            <p>DSE-style questions with solutions</p>
+            <span class="tag">Math</span>
+          </div>
+          
+          <div class="showcase-card" onclick="openModal('portfolio')">
+            <div class="icon">📊</div>
+            <h3>Student Portfolio Platform</h3>
+            <p>Digital portfolio for S1-S6</p>
+            <span class="tag">Assessment</span>
+          </div>
+          
+          <div class="showcase-card" onclick="openModal('vr-tour')">
+            <div class="icon">🏫</div>
+            <h3>School VR Tour</h3>
+            <p>360° virtual campus experience</p>
+            <span class="tag">Event</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  
+  <!-- Modals -->
+  <div class="modal-overlay" id="science-lab" onclick="closeModal(event, 'science-lab')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3><span class="icon">🔬</span> Virtual Science Lab</h3>
+        <button class="modal-close" onclick="closeModal(event, 'science-lab')">×</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag tag-teaching">Primary | Science | P4-P6</span>
+        
+        <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-radius: 12px; padding: 24px; margin: 20px 0;">
+          <p style="font-size: 16px; margin-bottom: 12px; color: var(--text);"><strong>🎯 Problem Solved:</strong></p>
+          <p style="color: var(--text-light);">Primary schools lacked science lab facilities. Students couldn't conduct experiments due to safety concerns and budget constraints.</p>
+        </div>
+        
+        <p style="font-size: 15px; margin-bottom: 20px;">An interactive virtual laboratory where students can conduct science experiments safely online.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🧪</div>
+            <div style="font-size: 14px; font-weight: 600;">15+ Experiments</div>
+            <div style="font-size: 12px; color: var(--text-light);">Chemistry, Physics, Biology</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🔒</div>
+            <div style="font-size: 14px; font-weight: 600;">100% Safe</div>
+            <div style="font-size: 12px; color: var(--text-light);">No real chemicals</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🌐</div>
+            <div style="font-size: 14px; font-weight: 600;">Bilingual</div>
+            <div style="font-size: 12px; color: var(--text-light);">English & Chinese</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📱</div>
+            <div style="font-size: 14px; font-weight: 600;">Any Device</div>
+            <div style="font-size: 12px; color: var(--text-light);">Mobile, tablet, PC</div>
+          </div>
+        </div>
+        
+        <div style="background: #fef3c7; border-radius: 12px; padding: 16px; margin: 20px 0;">
+          <p style="font-size: 14px; color: #92400e;"><strong>📈 Results:</strong> Students completed 3x more experiments. Science test scores improved by 15%.</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--text-light);">🏫 Delivered to: 3 primary schools in Kwai Chung</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="chinese-writing" onclick="closeModal(event, 'chinese-writing')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3><span class="icon">✍️</span> Chinese Writing Assistant</h3>
+        <button class="modal-close" onclick="closeModal(event, 'chinese-writing')">×</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag tag-teaching">Primary/Secondary | Chinese | P5-S3</span>
+        
+        <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 12px; padding: 24px; margin: 20px 0;">
+          <p style="font-size: 16px; margin-bottom: 12px; color: var(--text);"><strong>🎯 Problem Solved:</strong></p>
+          <p style="color: var(--text-light);">Students struggled with Chinese composition. Teachers spent hours grading and providing feedback.</p>
+        </div>
+        
+        <p style="font-size: 15px; margin-bottom: 20px;">AI-powered writing assistant that helps students improve Chinese composition with instant feedback.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">✨</div>
+            <div style="font-size: 14px; font-weight: 600;">Instant Feedback</div>
+            <div style="font-size: 12px; color: var(--text-light);">Real-time suggestions</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📝</div>
+            <div style="font-size: 14px; font-weight: 600;">Genre Templates</div>
+            <div style="font-size: 12px; color: var(--text-light);">Narrative, argumentative</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📊</div>
+            <div style="font-size: 14px; font-weight: 600;">Teacher Dashboard</div>
+            <div style="font-size: 12px; color: var(--text-light);">Track progress</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">⭐</div>
+            <div style="font-size: 14px; font-weight: 600;">Auto Scoring</div>
+            <div style="font-size: 12px; color: var(--text-light);">DSE criteria-based</div>
+          </div>
+        </div>
+        
+        <div style="background: #dcfce7; border-radius: 12px; padding: 16px; margin: 20px 0;">
+          <p style="font-size: 14px; color: #166534;"><strong>📈 Results:</strong> Writing scores improved by 23%. Teachers saved 5+ hours per week on grading.</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--text-light);">🏫 Delivered to: 5 schools across Hong Kong</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="english-reading" onclick="closeModal(event, 'english-reading')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3><span class="icon">📖</span> English Reading Companion</h3>
+        <button class="modal-close" onclick="closeModal(event, 'english-reading')">×</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag tag-student">Primary/Secondary | English | P3-S3</span>
+        
+        <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); border-radius: 12px; padding: 24px; margin: 20px 0;">
+          <p style="font-size: 16px; margin-bottom: 12px; color: var(--text);"><strong>🎯 Problem Solved:</strong></p>
+          <p style="color: var(--text-light);">Students had limited reading practice. Teachers couldn't differentiate materials for different reading levels.</p>
+        </div>
+        
+        <p style="font-size: 15px; margin-bottom: 20px;">AI-powered reading comprehension that adapts to each student's level with instant feedback.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🎯</div>
+            <div style="font-size: 14px; font-weight: 600;">Adaptive Levels</div>
+            <div style="font-size: 12px; color: var(--text-light);">Matches ability</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📚</div>
+            <div style="font-size: 14px; font-weight: 600;">Vocabulary Helper</div>
+            <div style="font-size: 12px; color: var(--text-light);">Instant definitions</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">❓</div>
+            <div style="font-size: 14px; font-weight: 600;">Comprehension Qs</div>
+            <div style="font-size: 12px; color: var(--text-light);">With explanations</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📈</div>
+            <div style="font-size: 14px; font-weight: 600;">Progress Tracking</div>
+            <div style="font-size: 12px; color: var(--text-light);">Teacher dashboard</div>
+          </div>
+        </div>
+        
+        <div style="background: #dcfce7; border-radius: 12px; padding: 16px; margin: 20px 0;">
+          <p style="font-size: 14px; color: #166534;"><strong>📈 Results:</strong> Reading scores improved by 18%. Students read 3x more passages.</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--text-light);">🏫 Delivered to: 6 primary schools, 3 secondary schools</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="math-generator" onclick="closeModal(event, 'math-generator')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3><span class="icon">🧮</span> Math Problem Generator</h3>
+        <button class="modal-close" onclick="closeModal(event, 'math-generator')">×</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag tag-teaching">Secondary | Math | S1-S6</span>
+        
+        <div style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe); border-radius: 12px; padding: 24px; margin: 20px 0;">
+          <p style="font-size: 16px; margin-bottom: 12px; color: var(--text);"><strong>🎯 Problem Solved:</strong></p>
+          <p style="color: var(--text-light);">Teachers spent 3-4 hours creating DSE practice papers. Question banks became outdated and repetitive.</p>
+        </div>
+        
+        <p style="font-size: 15px; margin-bottom: 20px;">Auto-generates DSE-style math questions with step-by-step solutions aligned to curriculum.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📚</div>
+            <div style="font-size: 14px; font-weight: 600;">1000+ Templates</div>
+            <div style="font-size: 12px; color: var(--text-light);">DSE-aligned</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">✅</div>
+            <div style="font-size: 14px; font-weight: 600;">Auto Solutions</div>
+            <div style="font-size: 12px; color: var(--text-light);">Step-by-step</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📐</div>
+            <div style="font-size: 14px; font-weight: 600;">All Levels</div>
+            <div style="font-size: 12px; color: var(--text-light);">Foundation to Extended</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📄</div>
+            <div style="font-size: 14px; font-weight: 600;">PDF Export</div>
+            <div style="font-size: 12px; color: var(--text-light);">Print-ready</div>
+          </div>
+        </div>
+        
+        <div style="background: #dbeafe; border-radius: 12px; padding: 16px; margin: 20px 0;">
+          <p style="font-size: 14px; color: #1e40af;"><strong>📈 Results:</strong> Teachers create papers in 10 minutes instead of 4 hours.</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--text-light);">🏫 Delivered to: 8 secondary schools</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="portfolio" onclick="closeModal(event, 'portfolio')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3><span class="icon">📊</span> Student Portfolio Platform</h3>
+        <button class="modal-close" onclick="closeModal(event, 'portfolio')">×</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag tag-admin">Secondary | Assessment | S1-S6</span>
+        
+        <div style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); border-radius: 12px; padding: 24px; margin: 20px 0;">
+          <p style="font-size: 16px; margin-bottom: 12px; color: var(--text);"><strong>🎯 Problem Solved:</strong></p>
+          <p style="color: var(--text-light);">Student achievements scattered across platforms. Hard to track growth and compile for university applications.</p>
+        </div>
+        
+        <p style="font-size: 15px; margin-bottom: 20px;">Digital portfolio where students showcase work, track achievements, and build records for university applications.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📅</div>
+            <div style="font-size: 14px; font-weight: 600;">Multi-Year</div>
+            <div style="font-size: 12px; color: var(--text-light);">S1-S6 tracking</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📎</div>
+            <div style="font-size: 14px; font-weight: 600;">Easy Upload</div>
+            <div style="font-size: 12px; color: var(--text-light);">Projects, essays, certs</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">💬</div>
+            <div style="font-size: 14px; font-weight: 600;">Teacher Comments</div>
+            <div style="font-size: 12px; color: var(--text-light);">Ongoing feedback</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🎓</div>
+            <div style="font-size: 14px; font-weight: 600;">Export Ready</div>
+            <div style="font-size: 12px; color: var(--text-light);">For applications</div>
+          </div>
+        </div>
+        
+        <div style="background: #dbeafe; border-radius: 12px; padding: 16px; margin: 20px 0;">
+          <p style="font-size: 14px; color: #1e40af;"><strong>📈 Results:</strong> 95% students found it easier to showcase. Uni application prep time reduced 50%.</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--text-light);">🏫 Delivered to: 4 secondary schools</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="vr-tour" onclick="closeModal(event, 'vr-tour')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3><span class="icon">🏫</span> School VR Tour</h3>
+        <button class="modal-close" onclick="closeModal(event, 'vr-tour')">×</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-tag tag-admin">All Levels | School Event</span>
+        
+        <div style="background: linear-gradient(135deg, #f3e8ff, #e9d5ff); border-radius: 12px; padding: 24px; margin: 20px 0;">
+          <p style="font-size: 16px; margin-bottom: 12px; color: var(--text);"><strong>🎯 Problem Solved:</strong></p>
+          <p style="color: var(--text-light);">Schools needed engaging content for anniversaries and open days. Physical tours limited by capacity.</p>
+        </div>
+        
+        <p style="font-size: 15px; margin-bottom: 20px;">Immersive 360° virtual campus tour for anniversaries and open days. Parents can explore from anywhere.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0;">
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">360°</div>
+            <div style="font-size: 14px; font-weight: 600;">Full Campus</div>
+            <div style="font-size: 12px; color: var(--text-light);">All key locations</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">🗣️</div>
+            <div style="font-size: 14px; font-weight: 600;">Narrated Tour</div>
+            <div style="font-size: 12px; color: var(--text-light);">Cantonese & English</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📱</div>
+            <div style="font-size: 14px; font-weight: 600;">Multi-Platform</div>
+            <div style="font-size: 12px; color: var(--text-light);">Mobile, tablet, VR</div>
+          </div>
+          <div style="background: #f8fafc; border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 28px; margin-bottom: 8px;">📍</div>
+            <div style="font-size: 14px; font-weight: 600;">Hotspots</div>
+            <div style="font-size: 12px; color: var(--text-light);">Interactive info</div>
+          </div>
+        </div>
+        
+        <div style="background: #fef3c7; border-radius: 12px; padding: 16px; margin: 20px 0;">
+          <p style="font-size: 14px; color: #92400e;"><strong>📈 Results:</strong> 10x increase in virtual visitors. Parents from overseas could finally "visit" campus.</p>
+        </div>
+        
+        <p style="font-size: 13px; color: var(--text-light);">🏫 Delivered to: 2 schools (50th anniversary projects)</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(event, modalId) {
+      if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+        document.getElementById(modalId).classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+          modal.classList.remove('active');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
